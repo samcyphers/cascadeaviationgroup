@@ -581,13 +581,6 @@
       background: radial-gradient(ellipse at 70% 50%, rgba(176,138,86,0.07) 0%, transparent 60%);
       pointer-events: none;
     }
-    .globe-cta-inner {
-      max-width: 1320px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      align-items: center; gap: 5rem;
-      position: relative; z-index: 1;
-    }
-    .globe-cta-content { text-align: left; }
     .globe-cta-h2 {
       font-size: clamp(1.8rem, 3.5vw, 3rem);
       font-weight: 800; letter-spacing: -0.02em; text-transform: uppercase;
@@ -597,18 +590,7 @@
       font-size: 0.92rem; font-weight: 300; color: rgba(255,255,255,0.65);
       max-width: 440px; margin-bottom: 2.5rem; line-height: 1.75;
     }
-    .globe-cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .globe-cta-globe-wrap {
-      position: relative; width: 100%; max-width: 520px;
-      margin: 0 auto; aspect-ratio: 1;
-    }
-    #cta-globe {
-      width: 100%; height: 100%;
-      border-radius: 50%;
-      cursor: grab; display: block;
-      opacity: 0; transition: opacity 1.2s ease;
-    }
-    #cta-globe:active { cursor: grabbing; }
+    .globe-cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
     /* ── Footer ── */
     footer {
@@ -863,10 +845,7 @@
 
       /* Globe CTA */
       #globe-cta { padding: 4rem 1.25rem; }
-      .globe-cta-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .globe-cta-content { text-align: center; order: 2; }
-      .globe-cta-globe-wrap { order: 1; max-width: 320px; }
-      .globe-cta-actions { justify-content: center; flex-direction: column; align-items: center; gap: 0.75rem; }
+      .globe-cta-actions { flex-direction: column; align-items: center; gap: 0.75rem; }
       .globe-cta-actions a,
       .globe-cta-actions button { width: 100%; max-width: 280px; justify-content: center; }
 
@@ -1304,20 +1283,15 @@
 </section>
 
 
-<!-- ══ GLOBE CTA ══ -->
+<!-- ══ CTA BANNER ══ -->
 <section id="globe-cta">
-  <div class="globe-cta-inner">
-    <div class="globe-cta-content">
-      <div class="eyebrow" style="margin-bottom:0.875rem;">Ready to Fly?</div>
-      <h2 class="globe-cta-h2">A Standard Uncommon<br>in Charter.</h2>
-      <p class="globe-cta-p">From your first inquiry to your final approach, Cascade Aviation Group delivers a level of service that sets a new benchmark for private aviation. Reach out today and experience the difference.</p>
-      <div class="globe-cta-actions">
-        <button onclick="openQuoteModal()" class="btn-gold">Get a Quote</button>
-        <a href="tel:3607979041" class="btn-outline-white" style="background:transparent;color:#ffffff;border-color:rgba(255,255,255,0.35);">Call 360-797-9041</a>
-      </div>
-    </div>
-    <div class="globe-cta-globe-wrap">
-      <canvas id="cta-globe"></canvas>
+  <div style="position:relative;z-index:1;text-align:center;">
+    <div class="eyebrow" style="margin-bottom:0.875rem;">Ready to Fly?</div>
+    <h2 class="globe-cta-h2">A Standard Uncommon<br>in Charter.</h2>
+    <p class="globe-cta-p" style="margin-left:auto;margin-right:auto;">From your first inquiry to your final approach, Cascade Aviation Group delivers a level of service that sets a new benchmark for private aviation. Reach out today and experience the difference.</p>
+    <div class="globe-cta-actions" style="justify-content:center;">
+      <button onclick="openQuoteModal()" class="btn-gold">Get a Quote</button>
+      <a href="tel:3607979041" class="btn-outline-white" style="background:transparent;color:#ffffff;border-color:rgba(255,255,255,0.35);">Call 360-797-9041</a>
     </div>
   </div>
 </section>
@@ -1849,157 +1823,6 @@ import DottedMap from 'https://esm.sh/dotted-map@1';
 })();
 </script>
 
-
-<script type="module">
-/* ── COBE Globe — Globe CTA Section ── */
-import createGlobe from 'https://esm.sh/cobe@0.6.3';
-
-(function initCtaGlobe() {
-  const canvas = document.getElementById('cta-globe');
-  if (!canvas) return;
-
-  let pointerDown  = null;
-  let lastPointer  = null;
-  let dragOffset   = { phi: 0, theta: 0 };
-  let velocity     = { phi: 0, theta: 0 };
-  let phiOffset    = 0;
-  let thetaOffset  = 0;
-  let isPaused     = false;
-  const THETA_MIN  = -0.4, THETA_MAX = 0.4;
-
-  canvas.addEventListener('pointerdown', function(e) {
-    pointerDown = { x: e.clientX, y: e.clientY };
-    canvas.style.cursor = 'grabbing';
-    isPaused = true;
-  });
-  window.addEventListener('pointermove', function(e) {
-    if (!pointerDown) return;
-    dragOffset = { phi: (e.clientX - pointerDown.x) / 300, theta: (e.clientY - pointerDown.y) / 1000 };
-    const now = Date.now();
-    if (lastPointer) {
-      const dt = Math.max(now - lastPointer.t, 1), cap = 0.15;
-      velocity = {
-        phi:   Math.max(-cap, Math.min(cap, ((e.clientX - lastPointer.x) / dt) * 0.3)),
-        theta: Math.max(-cap, Math.min(cap, ((e.clientY - lastPointer.y) / dt) * 0.08)),
-      };
-    }
-    lastPointer = { x: e.clientX, y: e.clientY, t: now };
-  }, { passive: true });
-  window.addEventListener('pointerup', function() {
-    if (pointerDown) {
-      phiOffset   += dragOffset.phi;
-      thetaOffset += dragOffset.theta;
-      dragOffset   = { phi: 0, theta: 0 };
-      lastPointer  = null;
-    }
-    pointerDown = null;
-    canvas.style.cursor = 'grab';
-    isPaused = false;
-  }, { passive: true });
-
-  const MARKERS = [
-    { location: [47.6,  -122.3], size: 0.055 }, // Seattle (home base)
-    { location: [34.1,  -118.2], size: 0.038 }, // Los Angeles
-    { location: [40.7,   -74.0], size: 0.042 }, // New York
-    { location: [25.8,   -80.2], size: 0.034 }, // Miami
-    { location: [21.3,  -157.8], size: 0.034 }, // Honolulu
-    { location: [51.5,    -0.1], size: 0.038 }, // London
-    { location: [48.9,     2.3], size: 0.036 }, // Paris
-    { location: [25.2,    55.3], size: 0.034 }, // Dubai
-    { location: [35.7,   139.7], size: 0.038 }, // Tokyo
-    { location: [-33.9,  151.2], size: 0.034 }, // Sydney
-    { location: [49.3,  -123.1], size: 0.022 }, // Vancouver
-    { location: [43.5,  -110.8], size: 0.022 }, // Jackson Hole
-    { location: [39.2,  -106.8], size: 0.022 }, // Aspen
-    { location: [41.9,   -87.6], size: 0.022 }, // Chicago
-    { location: [22.9,  -109.9], size: 0.022 }, // Cabo
-    { location: [-33.9,   18.4], size: 0.022 }, // Cape Town
-    { location: [-22.9,  -43.2], size: 0.022 }, // Rio
-    { location: [41.0,    28.9], size: 0.022 }, // Istanbul
-    { location: [4.2,     73.5], size: 0.018 }, // Maldives
-  ];
-
-  const ARCS = [
-    { from: [47.6, -122.3], to: [40.7,  -74.0] }, // Seattle → New York
-    { from: [47.6, -122.3], to: [25.8,  -80.2] }, // Seattle → Miami
-    { from: [47.6, -122.3], to: [34.1, -118.2] }, // Seattle → Los Angeles
-    { from: [47.6, -122.3], to: [21.3, -157.8] }, // Seattle → Honolulu
-    { from: [47.6, -122.3], to: [51.5,   -0.1] }, // Seattle → London
-    { from: [47.6, -122.3], to: [35.7,  139.7] }, // Seattle → Tokyo
-    { from: [40.7,  -74.0], to: [51.5,   -0.1] }, // New York → London
-    { from: [25.8,  -80.2], to: [-22.9, -43.2] }, // Miami → Rio
-    { from: [51.5,   -0.1], to: [25.2,   55.3] }, // London → Dubai
-    { from: [35.7,  139.7], to: [-33.9, 151.2] }, // Tokyo → Sydney
-    { from: [-33.9,  18.4], to: [25.2,   55.3] }, // Cape Town → Dubai
-  ];
-
-  const BASE_THETA = 0.22;
-  const BASE_SPEED = 0.0018;
-  let phi   = 1.5;
-  let globe = null;
-
-  function init() {
-    const width = canvas.offsetWidth;
-    if (width === 0 || globe) return;
-
-    globe = createGlobe(canvas, {
-      devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
-      width, height: width,
-      phi, theta: BASE_THETA,
-      dark:          1,
-      diffuse:       1.1,
-      mapSamples:    16000,
-      mapBrightness: 4,
-      baseColor:     [0.08, 0.10, 0.12],  // near-black base
-      markerColor:   [0.69, 0.54, 0.34],  // brand gold #b08a56
-      glowColor:     [0.69, 0.54, 0.34],  // gold glow
-      markerElevation: 0.01,
-      markers: MARKERS,
-      arcs: ARCS.map(function(a, i) { return { from: a.from, to: a.to, id: 'cta-arc-' + i }; }),
-      arcColor:  [0.42, 0.51, 0.58],      // brand primary #6b8293
-      arcWidth:  0.5,
-      arcHeight: 0.28,
-      opacity:   0.75,
-      onRender: function(state) {
-        if (!isPaused) {
-          phi += BASE_SPEED;
-          if (Math.abs(velocity.phi) > 0.0001 || Math.abs(velocity.theta) > 0.0001) {
-            phiOffset   += velocity.phi;
-            thetaOffset += velocity.theta;
-            velocity.phi   *= 0.95;
-            velocity.theta *= 0.95;
-          }
-          if (thetaOffset < THETA_MIN) thetaOffset += (THETA_MIN - thetaOffset) * 0.1;
-          else if (thetaOffset > THETA_MAX) thetaOffset += (THETA_MAX - thetaOffset) * 0.1;
-        }
-        state.phi   = phi + phiOffset + dragOffset.phi;
-        state.theta = BASE_THETA + thetaOffset + dragOffset.theta;
-      },
-    });
-
-    setTimeout(function() { if (canvas) canvas.style.opacity = '1'; });
-  }
-
-  function setup() {
-    if (canvas.offsetWidth > 0) { init(); return; }
-    const ro = new ResizeObserver(function(entries) {
-      if (entries[0].contentRect.width > 0) { ro.disconnect(); init(); }
-    });
-    ro.observe(canvas);
-  }
-
-  setup();
-
-  let resizeTimer;
-  window.addEventListener('resize', function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
-      if (globe) { globe.destroy(); globe = null; }
-      setup();
-    }, 200);
-  });
-})();
-</script>
 
 </body>
 </html>
