@@ -3,7 +3,82 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cascade Aviation Group — Private Jet Charter</title>
+
+  <!-- ── Primary SEO ── -->
+  <title>Private Jet Charter Seattle | Cascade Aviation Group</title>
+  <meta name="description" content="Seattle's premier private jet charter broker. Book light jets, midsize jets, large cabin jets, ultra-long range jets, and helicopter charters — nationwide and worldwide. Call 360-797-9041." />
+  <meta name="keywords" content="private jet charter Seattle, jet charter Seattle, charter flight Seattle, private aviation Seattle, light jet charter, midsize jet charter, super midsize jet, large cabin jet charter, ultra long range jet, helicopter charter Seattle, Cascade Aviation Group" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#2b2f34" />
+  <link rel="canonical" href="https://cascadeaviationgroup.com/" />
+
+  <!-- ── Open Graph ── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Cascade Aviation Group" />
+  <meta property="og:title" content="Private Jet Charter Seattle | Cascade Aviation Group" />
+  <meta property="og:description" content="Seattle's premier private jet charter broker. Skip the lines — board your aircraft in minutes. Light jets to ultra-long range, nationwide and worldwide." />
+  <meta property="og:url" content="https://cascadeaviationgroup.com/" />
+  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/G-ULFS_Gulfstream_G650_CVT_05-05-16_%2827046023031%29_%28cropped%29.jpg/1200px-G-ULFS_Gulfstream_G650_CVT_05-05-16_%2827046023031%29_%28cropped%29.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- ── Twitter Card ── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Private Jet Charter Seattle | Cascade Aviation Group" />
+  <meta name="twitter:description" content="Seattle's premier private jet charter broker. Light jets to ultra-long range, nationwide and worldwide. Call 360-797-9041." />
+  <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/G-ULFS_Gulfstream_G650_CVT_05-05-16_%2827046023031%29_%28cropped%29.jpg/1200px-G-ULFS_Gulfstream_G650_CVT_05-05-16_%2827046023031%29_%28cropped%29.jpg" />
+
+  <!-- ── JSON-LD Structured Data ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TravelAgency",
+        "@id": "https://cascadeaviationgroup.com/#organization",
+        "name": "Cascade Aviation Group",
+        "description": "Seattle's premier private jet charter broker offering light jets, midsize jets, large cabin jets, ultra-long range jets, and helicopter charters — nationwide and worldwide.",
+        "url": "https://cascadeaviationgroup.com",
+        "telephone": "+1-360-797-9041",
+        "email": "concierge@cascadeaviationgroup.com",
+        "logo": "https://cascadeaviationgroup.com/assets/logo.png",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/G-ULFS_Gulfstream_G650_CVT_05-05-16_%2827046023031%29_%28cropped%29.jpg/1200px-G-ULFS_Gulfstream_G650_CVT_05-05-16_%2827046023031%29_%28cropped%29.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Seattle",
+          "addressRegion": "WA",
+          "addressCountry": "US"
+        },
+        "areaServed": [
+          { "@type": "Country", "name": "United States" },
+          { "@type": "AdministrativeArea", "name": "Worldwide" }
+        ],
+        "priceRange": "$$$",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Private Aviation Charter Services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Light Jet Charter", "description": "Up to 7 passengers, range up to 1,500 nm — ideal for regional routes." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Midsize Jet Charter", "description": "Up to 9 passengers, range up to 2,500 nm — perfect for cross-country travel." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Super-Midsize Jet Charter", "description": "Up to 10 passengers, range up to 3,500 nm — coast to coast in comfort." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Large Cabin Jet Charter", "description": "Up to 14 passengers, range up to 4,000 nm — intercontinental capability." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ultra-Long Range Jet Charter", "description": "Up to 16 passengers, 7,000+ nm range — non-stop global travel." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Helicopter Charter", "description": "2–8 passengers — last-mile luxury from city to resort." } }
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://cascadeaviationgroup.com/#website",
+        "url": "https://cascadeaviationgroup.com",
+        "name": "Cascade Aviation Group",
+        "publisher": { "@id": "https://cascadeaviationgroup.com/#organization" }
+      }
+    ]
+  }
+  </script>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -566,10 +641,65 @@
 
     /* ── Mobile hamburger ── */
     #hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-    #mobile-nav { display: none; background: rgba(43,47,52,0.98); padding: 1.5rem 2.5rem; border-top: 1px solid rgba(255,255,255,0.08); }
-    #mobile-nav.open { display: flex; flex-direction: column; gap: 0.875rem; }
-    #mobile-nav a { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.85); text-decoration: none; padding: 0.35rem 0; transition: color 0.2s; }
-    #mobile-nav a:hover { color: var(--navy); }
+    #mobile-nav { display: none; background: #ffffff; padding: 1.5rem 2rem 2rem; border-top: 1px solid rgba(43,47,52,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+    #mobile-nav.open { display: flex; flex-direction: column; gap: 0; }
+    #mobile-nav a { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #2b2f34; text-decoration: none; padding: 0.75rem 0; border-bottom: 1px solid rgba(43,47,52,0.08); transition: color 0.2s; }
+    #mobile-nav a:last-child { border-bottom: none; }
+    #mobile-nav a:hover { color: var(--primary); }
+    #mobile-nav .btn-gold { border-bottom: none; text-align: center; margin-top: 0.75rem; border-radius: var(--r); }
+
+    /* ── Quote Modal ── */
+    #quote-modal {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(10,15,30,0.72); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; padding: 1.5rem;
+    }
+    #quote-modal.open { display: flex; }
+    .qm-card {
+      background: #ffffff; border-radius: 8px;
+      width: 100%; max-width: 520px;
+      box-shadow: 0 24px 80px rgba(10,15,30,0.3);
+      overflow: hidden; animation: qmSlideIn 0.3s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    @keyframes qmSlideIn {
+      from { opacity: 0; transform: translateY(32px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .qm-header {
+      background: #2b2f34; padding: 1.75rem 2rem 1.5rem;
+      display: flex; align-items: flex-start; justify-content: space-between;
+    }
+    .qm-eyebrow { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+    .qm-title { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.01em; text-transform: uppercase; color: #ffffff; line-height: 1.1; }
+    .qm-close {
+      background: rgba(255,255,255,0.1); border: none; cursor: pointer;
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.7); margin-top: 0.2rem;
+      transition: background 0.2s;
+    }
+    .qm-close:hover { background: rgba(255,255,255,0.2); color: #ffffff; }
+    .qm-body { padding: 1.75rem 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .qm-field { display: flex; flex-direction: column; gap: 0.35rem; }
+    .qm-field label { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+    .qm-field input, .qm-field select {
+      font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 500; color: #0a0f1e;
+      background: var(--blue); border: 1.5px solid var(--border);
+      border-radius: var(--r); padding: 0.7rem 1rem; outline: none; transition: border-color 0.2s;
+    }
+    .qm-field input:focus, .qm-field select:focus { border-color: var(--primary); }
+    .qm-field input::placeholder { color: rgba(10,15,30,0.35); }
+    .qm-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .qm-submit {
+      width: 100%; margin-top: 0.25rem;
+      font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #ffffff;
+      background: var(--gold); border: none; border-radius: var(--r);
+      padding: 1rem; cursor: pointer; transition: background 0.2s, transform 0.15s;
+    }
+    .qm-submit:hover { background: var(--gold-dark); transform: translateY(-1px); }
+    .qm-submit:active { transform: translateY(0); }
+    .qm-note { font-size: 0.65rem; font-weight: 300; color: var(--muted); text-align: center; line-height: 1.5; }
 
     /* ── Animations ── */
     @keyframes fadeUp {
@@ -679,29 +809,74 @@
 
     /* ── Responsive ── */
     @media (max-width: 1024px) {
-      .hero-split { grid-template-columns: 1fr 1fr; gap: 2.5rem; padding: 110px 2rem 2.5rem; }
       .why-grid { grid-template-columns: 1fr; gap: 3.5rem; }
       .fleet-grid { grid-template-columns: repeat(2, 1fr); }
-      .dest-grid { grid-template-columns: repeat(2, 1fr); }
       .how-steps { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
       .how-steps::before { display: none; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
+      /* Nav */
+      .nav-wrap { padding: 0 1.25rem; height: 68px; }
+      .nav-logo-img { height: 42px; }
       .nav-links { display: none; }
       .nav-right .btn-gold { display: none; }
+      .nav-right .nav-phone { font-size: 0.88rem; }
       #hamburger { display: block; }
-      .hero-split { grid-template-columns: 1fr; padding: 100px 1.5rem 2rem; gap: 2rem; }
-      .hero-video-col { display: none; }
-      .hero-h1 { font-size: clamp(2rem, 8vw, 3rem); }
-      .quote-bar-inner { flex-direction: column; }
-      .qf-field { border-right: none; border-bottom: 1px solid rgba(107,130,147,0.2); }
-      .qf-submit { justify-content: center; padding: 1.25rem; }
-      .fleet-grid { grid-template-columns: 1fr; }
-      .world-map-wrap { aspect-ratio: 800 / 500; }
+
+      /* Hero */
+      .hero-video-full { min-height: 100svh; }
+      #quote-bar { margin: 0 1rem; }
+      .quote-bar-inner { flex-direction: column; padding: 0 1rem; }
+      .qf-field { border-right: none; border-bottom: 1px solid rgba(107,130,147,0.2); min-width: 100%; }
+      .qf-field:last-of-type { border-bottom: none; }
+      .qf-submit { justify-content: center; padding: 1.25rem; width: 100%; }
+      .glow-submit-wrap { width: 100%; }
+
+      /* How It Works */
+      #how-it-works { padding: 4rem 1.25rem; }
+      .how-steps { grid-template-columns: 1fr; gap: 2.5rem; }
+      .how-step { padding: 0 0.5rem; }
+
+      /* Hero Copy */
+      #hero-copy { padding: 4rem 1.25rem; }
+      .hero-h1 { font-size: clamp(2rem, 9vw, 3rem); }
+      .hero-sub { font-size: 0.88rem; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .btn-flow { width: 100%; max-width: 320px; justify-content: center; }
+
+      /* Why Cascade */
+      #why-cascade { padding: 4rem 1.25rem; }
+      .why-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .why-body { max-width: 100%; }
+
+      /* Fleet */
+      #fleet { padding: 4rem 1.25rem; }
+      .fleet-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .fleet-card img { height: 200px; }
+
+      /* Destinations */
+      #destinations { padding: 4rem 1.25rem; }
+      .globe-wrap { max-width: 100%; }
       .dest-chips { gap: 0.5rem; }
-      .how-steps { grid-template-columns: 1fr; }
+      .dest-chip { padding: 0.5rem 1rem; }
+      .dest-chip-name { font-size: 0.65rem; }
+
+      /* CTA Banner */
+      #cta-banner { padding: 4rem 1.25rem; }
+      #cta-banner .cta-actions { flex-direction: column; align-items: center; gap: 0.75rem; }
+      #cta-banner .cta-actions a { width: 100%; max-width: 280px; justify-content: center; }
+
+      /* Footer */
+      footer { padding: 3rem 1.25rem 1.5rem; }
       .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
+
+      /* Modal */
+      .qm-card { max-height: 90svh; overflow-y: auto; }
+      .qm-row { grid-template-columns: 1fr; }
+      .qm-body { padding: 1.25rem 1.25rem; }
+      .qm-header { padding: 1.25rem 1.25rem 1rem; }
     }
   </style>
 </head>
@@ -721,7 +896,7 @@
     </div>
     <div class="nav-right">
       <a href="tel:3607979041" class="nav-phone">360-797-9041</a>
-      <a href="#quote" class="btn-gold">Request a Quote</a>
+      <button onclick="openQuoteModal()" class="btn-gold">Get a Quote</button>
       <button id="hamburger" onclick="toggleMenu()" aria-label="Menu">
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="rgba(10,15,30,0.7)" stroke-width="2" stroke-linecap="round">
           <line x1="2" y1="5" x2="20" y2="5"/><line x1="2" y1="11" x2="20" y2="11"/><line x1="2" y1="17" x2="20" y2="17"/>
@@ -734,7 +909,7 @@
     <a href="#why-cascade" onclick="closeMenu()">Why Cascade</a>
     <a href="#fleet" onclick="closeMenu()">Fleet</a>
     <a href="#destinations" onclick="closeMenu()">Destinations</a>
-    <a href="#quote" onclick="closeMenu()" class="btn-gold" style="text-align:center;margin-top:0.5rem;">Request a Quote</a>
+    <button onclick="closeMenu();openQuoteModal();" class="btn-gold">Get a Quote</button>
   </div>
 </nav>
 
@@ -911,10 +1086,10 @@
       Private jet charter, expertly arranged. Skip the terminal lines, the crowds, and the TSA. Arrive twenty minutes before departure and effortlessly board your aircraft — direct to wherever business or adventure calls.
     </p>
     <div class="hero-actions fade-up fade-up-d3">
-      <a href="#quote" class="btn-flow btn-flow-primary">
+      <button onclick="openQuoteModal()" class="btn-flow btn-flow-primary">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.5l-9-9-2 2 4 4H2v2h13l-4 4 2 2 9-9z"/></svg>
-        Request a Quote
-      </a>
+        Get a Quote
+      </button>
       <a href="#fleet" class="btn-flow btn-flow-secondary">View Fleet</a>
     </div>
   </div>
@@ -938,10 +1113,10 @@
         <p class="why-body">
           Whether you're closing a deal across the country or escaping to a sought-after retreat, our team of aviation specialists ensures every detail — from departure to arrival — is executed without compromise. Travel private. Travel on your terms. Travel Cascade.
         </p>
-        <a href="#quote" class="btn-flow btn-flow-primary">
+        <button onclick="openQuoteModal()" class="btn-flow btn-flow-primary">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.5l-9-9-2 2 4 4H2v2h13l-4 4 2 2 9-9z"/></svg>
-          Request a Charter Quote
-        </a>
+          Get a Quote
+        </button>
       </div>
 
       <!-- Right: 4 selling points -->
@@ -1178,11 +1353,67 @@
     <h2>A Standard Uncommon<br>in Charter.</h2>
     <p>From your first inquiry to your final approach, Cascade Aviation Group delivers a level of service that sets a new benchmark for private aviation. Reach out today and experience the difference.</p>
     <div class="cta-actions">
-      <a href="tel:3607979041" style="background:#ffffff;color:#2b2f34;border:none;" class="btn-gold">Call 360-797-9041</a>
-      <a href="mailto:concierge@cascadeaviationgroup.com" style="background:#ffffff;color:#2b2f34;border-color:#ffffff;" class="btn-outline-white">Email Our Concierge</a>
+      <button onclick="openQuoteModal()" style="background:#ffffff;color:#2b2f34;border:none;" class="btn-gold">Get a Quote</button>
+      <a href="tel:3607979041" style="background:transparent;color:#ffffff;border-color:rgba(255,255,255,0.4);" class="btn-outline-white">Call 360-797-9041</a>
     </div>
   </div>
 </section>
+
+
+<!-- ══ QUOTE MODAL ══ -->
+<div id="quote-modal" role="dialog" aria-modal="true" aria-label="Get a Quote">
+  <div class="qm-card">
+    <div class="qm-header">
+      <div>
+        <div class="qm-eyebrow">Private Jet Charter</div>
+        <div class="qm-title">Get a Quote</div>
+      </div>
+      <button class="qm-close" onclick="closeQuoteModal()" aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/>
+        </svg>
+      </button>
+    </div>
+    <form class="qm-body" onsubmit="submitModalQuote(event)">
+      <div class="qm-row">
+        <div class="qm-field">
+          <label for="qm-from">From</label>
+          <input id="qm-from" type="text" name="from" placeholder="Departure city or airport" />
+        </div>
+        <div class="qm-field">
+          <label for="qm-to">To</label>
+          <input id="qm-to" type="text" name="to" placeholder="Destination city or airport" />
+        </div>
+      </div>
+      <div class="qm-row">
+        <div class="qm-field">
+          <label for="qm-date">Date</label>
+          <input id="qm-date" type="date" name="date" />
+        </div>
+        <div class="qm-field">
+          <label for="qm-pax">Passengers</label>
+          <select id="qm-pax" name="passengers">
+            <option value="" disabled selected>Select</option>
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option>
+            <option>9</option><option>10</option><option>11+</option>
+          </select>
+        </div>
+      </div>
+      <div class="qm-field">
+        <label for="qm-email">Your Email</label>
+        <input id="qm-email" type="email" name="email" placeholder="your@email.com" required />
+      </div>
+      <button type="submit" class="qm-submit">
+        Submit Quote Request
+        <svg style="margin-left:0.5rem;vertical-align:middle;" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="2" y1="7" x2="12" y2="7"/><polyline points="7 2 12 7 7 12"/>
+        </svg>
+      </button>
+      <p class="qm-note">Our team will respond within 2 hours during business hours.</p>
+    </form>
+  </div>
+</div>
 
 
 <!-- ══ FOOTER ══ -->
@@ -1202,7 +1433,7 @@
         <a href="#why-cascade">Why Cascade</a>
         <a href="#fleet">Our Fleet</a>
         <a href="#destinations">Destinations</a>
-        <a href="#quote">Request a Quote</a>
+        <a href="#" onclick="event.preventDefault();openQuoteModal();">Get a Quote</a>
       </div>
     </div>
 
@@ -1253,31 +1484,53 @@
     document.getElementById('mobile-nav').classList.remove('open');
   }
 
-  /* ── Quote form → mailto ── */
-  function submitQuote(e) {
-    e.preventDefault();
-    const f = e.target;
-    const from      = f.from.value || '(not specified)';
-    const to        = f.to.value || '(not specified)';
-    const date      = f.date.value || '(not specified)';
-    const passengers = f.passengers.value || '(not specified)';
-    const email     = f.email.value || '(not specified)';
-
-    const subject = encodeURIComponent('Charter Quote Request — Cascade Aviation Group');
-    const body = encodeURIComponent(
-      'Charter Quote Request\n' +
-      '─────────────────────\n' +
-      'From:        ' + from + '\n' +
-      'To:          ' + to + '\n' +
-      'Date:        ' + date + '\n' +
-      'Passengers:  ' + passengers + '\n' +
-      'Reply Email: ' + email + '\n' +
-      '─────────────────────\n' +
+  /* ── Shared email sender ── */
+  function sendQuoteEmail(from, to, date, passengers, email) {
+    var subject = encodeURIComponent('Charter Quote Request — Cascade Aviation Group');
+    var body = encodeURIComponent(
+      'NEW CHARTER QUOTE REQUEST\n' +
+      '══════════════════════════\n' +
+      'From:        ' + (from || '(not specified)') + '\n' +
+      'To:          ' + (to   || '(not specified)') + '\n' +
+      'Date:        ' + (date || '(not specified)') + '\n' +
+      'Passengers:  ' + (passengers || '(not specified)') + '\n' +
+      'Reply Email: ' + (email || '(not specified)') + '\n' +
+      '══════════════════════════\n' +
       'Submitted via cascadeaviationgroup.com'
     );
-
     window.location.href = 'mailto:concierge@cascadeaviationgroup.com?subject=' + subject + '&body=' + body;
   }
+
+  /* ── Inline quote bar form ── */
+  function submitQuote(e) {
+    e.preventDefault();
+    var f = e.target;
+    sendQuoteEmail(f.from.value, f.to.value, f.date.value, f.passengers.value, f.email.value);
+  }
+
+  /* ── Quote Modal ── */
+  function openQuoteModal() {
+    document.getElementById('quote-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeQuoteModal() {
+    document.getElementById('quote-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function submitModalQuote(e) {
+    e.preventDefault();
+    var f = e.target;
+    sendQuoteEmail(f.from.value, f.to.value, f.date.value, f.passengers.value, f.email.value);
+    closeQuoteModal();
+  }
+  // Close on backdrop click
+  document.getElementById('quote-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeQuoteModal();
+  });
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeQuoteModal();
+  });
 
   /* ── Star Button: set offset-path based on live dimensions ── */
   (function initStarBtn() {
@@ -1623,15 +1876,15 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
     });
   }
 
-  // Project lat/lon to 2D screen coords given current phi/theta
+  // Project lat/lon to 2D screen coords matching COBE's coordinate system
   function project(lat, lon, phi, theta, width) {
     const latR = lat * Math.PI / 180;
     const lonR = lon * Math.PI / 180;
     const x = Math.cos(latR) * Math.sin(lonR);
     const y = Math.sin(latR);
     const z = Math.cos(latR) * Math.cos(lonR);
-    // Rotate by phi (Y-axis)
-    const rx  =  x * Math.cos(phi) - z * Math.sin(phi);
+    // Rotate by phi (Y-axis) — rx negated to match COBE's screen orientation
+    const rx  =  z * Math.sin(phi) - x * Math.cos(phi);
     const rz0 =  x * Math.sin(phi) + z * Math.cos(phi);
     const ry0 = y;
     // Rotate by theta (X-axis)
