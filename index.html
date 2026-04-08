@@ -528,78 +528,87 @@
     .dest-inner { max-width: 1320px; margin: 0 auto; position: relative; z-index: 1; }
     .dest-title { color: #0a0f1e; }
 
-    /* ── COBE Globe (Destinations) ── */
-    .globe-wrap {
-      position: relative;
-      width: 100%; max-width: 640px;
+    /* ── World Map (Destinations) ── */
+    .world-map-wrap {
+      width: 100%; max-width: 1100px;
       margin: 0 auto;
-      aspect-ratio: 1;
+      border-radius: 16px;
+      overflow: hidden;
     }
-    #dest-globe {
+    #dest-map-container {
+      width: 100%;
+      aspect-ratio: 2/1;
+      position: relative;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+    #dest-map-container.loaded { opacity: 1; }
+    .dest-map-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      -webkit-mask-image: linear-gradient(to bottom, transparent, rgba(255,255,255,0.85) 12%, rgba(255,255,255,0.85) 88%, transparent);
+      mask-image: linear-gradient(to bottom, transparent, rgba(255,255,255,0.85) 12%, rgba(255,255,255,0.85) 88%, transparent);
+      pointer-events: none;
+      user-select: none;
+    }
+    .dest-map-overlay {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+    }
+    .city-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      fill: #2b2f34;
+      text-transform: uppercase;
+      paint-order: stroke;
+      stroke: rgba(237,242,245,0.95);
+      stroke-width: 3px;
+      stroke-linejoin: round;
+    }
+
+    /* ── Globe CTA ── */
+    #globe-cta {
+      padding: 5rem 2.5rem;
+      background: linear-gradient(120deg, #2b2f34 0%, #1a1d20 60%, #12151a 100%);
+      position: relative; overflow: hidden;
+    }
+    #globe-cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(176,138,86,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .globe-cta-inner {
+      max-width: 1320px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 5rem;
+      position: relative; z-index: 1;
+    }
+    .globe-cta-content { text-align: left; }
+    .globe-cta-h2 {
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      font-weight: 800; letter-spacing: -0.02em; text-transform: uppercase;
+      color: #ffffff; margin-bottom: 1rem;
+    }
+    .globe-cta-p {
+      font-size: 0.92rem; font-weight: 300; color: rgba(255,255,255,0.65);
+      max-width: 440px; margin-bottom: 2.5rem; line-height: 1.75;
+    }
+    .globe-cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .globe-cta-globe-wrap {
+      position: relative; width: 100%; max-width: 520px;
+      margin: 0 auto; aspect-ratio: 1;
+    }
+    #cta-globe {
       width: 100%; height: 100%;
       border-radius: 50%;
       cursor: grab; display: block;
       opacity: 0; transition: opacity 1.2s ease;
     }
-    #dest-globe:active { cursor: grabbing; }
-
-    /* Polaroid cards (JS-positioned) */
-    #globe-polaroids { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
-    .globe-polaroid {
-      position: absolute;
-      top: 0; left: 0;
-      background: #ffffff;
-      padding: 7px 7px 28px;
-      box-shadow:
-        0 4px 16px rgba(43,47,52,0.18),
-        0 1px 4px rgba(43,47,52,0.1),
-        inset 0 0 0 0.5px rgba(43,47,52,0.06);
-      pointer-events: none;
-      transition: opacity 0.4s ease, filter 0.4s ease;
-      will-change: transform;
-    }
-    .globe-polaroid img {
-      display: block; width: 72px; height: 72px;
-      object-fit: cover; background: var(--blue);
-    }
-    .globe-polaroid-caption {
-      position: absolute; bottom: 7px; left: 0; right: 0;
-      text-align: center;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.44rem; font-weight: 700; letter-spacing: 0.12em;
-      color: #2b2f34; text-transform: uppercase;
-    }
-    /* stem connecting polaroid to dot */
-    .globe-polaroid::after {
-      content: '';
-      position: absolute; bottom: -10px; left: 50%;
-      transform: translateX(-50%);
-      width: 1px; height: 10px;
-      background: rgba(176,138,86,0.6);
-    }
-
-    /* ── CTA Banner ── */
-    #cta-banner {
-      padding: 5rem 2.5rem;
-      background: linear-gradient(110deg, #2b2f34 0%, #1a1d20 100%);
-      text-align: center; position: relative; overflow: hidden;
-    }
-    #cta-banner::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% -20%, rgba(107,130,147,0.12) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    #cta-banner h2 {
-      font-size: clamp(1.8rem, 3.5vw, 3rem);
-      font-weight: 800; letter-spacing: -0.02em; text-transform: uppercase;
-      color: var(--white); margin-bottom: 1rem; position: relative; z-index: 1;
-    }
-    #cta-banner p {
-      font-size: 0.92rem; font-weight: 300; color: rgba(255,255,255,0.68);
-      max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.75; position: relative; z-index: 1;
-    }
-    #cta-banner .cta-actions { position: relative; z-index: 1; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    #cta-globe:active { cursor: grabbing; }
 
     /* ── Footer ── */
     footer {
@@ -847,15 +856,19 @@
 
       /* Destinations */
       #destinations { padding: 4rem 1.25rem; }
-      .globe-wrap { max-width: 100%; }
+      .world-map-wrap { border-radius: 8px; }
       .dest-chips { gap: 0.5rem; }
       .dest-chip { padding: 0.5rem 1rem; }
       .dest-chip-name { font-size: 0.65rem; }
 
-      /* CTA Banner */
-      #cta-banner { padding: 4rem 1.25rem; }
-      #cta-banner .cta-actions { flex-direction: column; align-items: center; gap: 0.75rem; }
-      #cta-banner .cta-actions a { width: 100%; max-width: 280px; justify-content: center; }
+      /* Globe CTA */
+      #globe-cta { padding: 4rem 1.25rem; }
+      .globe-cta-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .globe-cta-content { text-align: center; order: 2; }
+      .globe-cta-globe-wrap { order: 1; max-width: 320px; }
+      .globe-cta-actions { justify-content: center; flex-direction: column; align-items: center; gap: 0.75rem; }
+      .globe-cta-actions a,
+      .globe-cta-actions button { width: 100%; max-width: 280px; justify-content: center; }
 
       /* Footer */
       footer { padding: 3rem 1.25rem 1.5rem; }
@@ -1283,24 +1296,28 @@
       <p style="font-size:0.88rem;font-weight:300;color:rgba(10,15,30,0.5);margin-top:1rem;max-width:520px;line-height:1.75;">From the Pacific Northwest to sought-after destinations across the globe — Cascade Aviation Group puts any runway within reach.</p>
     </div>
 
-    <!-- COBE Globe with Polaroids -->
-    <div class="globe-wrap">
-      <canvas id="dest-globe"></canvas>
-      <div id="globe-polaroids"></div>
+    <!-- World Map -->
+    <div class="world-map-wrap">
+      <div id="dest-map-container"></div>
     </div>
   </div>
 </section>
 
 
-<!-- ══ CTA BANNER ══ -->
-<section id="cta-banner">
-  <div style="position:relative;z-index:1;">
-    <div class="eyebrow" style="margin-bottom:0.875rem;">Ready to Fly?</div>
-    <h2>A Standard Uncommon<br>in Charter.</h2>
-    <p>From your first inquiry to your final approach, Cascade Aviation Group delivers a level of service that sets a new benchmark for private aviation. Reach out today and experience the difference.</p>
-    <div class="cta-actions">
-      <button onclick="openQuoteModal()" style="background:#ffffff;color:#2b2f34;border:none;" class="btn-gold">Get a Quote</button>
-      <a href="tel:3607979041" style="background:transparent;color:#ffffff;border-color:rgba(255,255,255,0.4);" class="btn-outline-white">Call 360-797-9041</a>
+<!-- ══ GLOBE CTA ══ -->
+<section id="globe-cta">
+  <div class="globe-cta-inner">
+    <div class="globe-cta-content">
+      <div class="eyebrow" style="margin-bottom:0.875rem;">Ready to Fly?</div>
+      <h2 class="globe-cta-h2">A Standard Uncommon<br>in Charter.</h2>
+      <p class="globe-cta-p">From your first inquiry to your final approach, Cascade Aviation Group delivers a level of service that sets a new benchmark for private aviation. Reach out today and experience the difference.</p>
+      <div class="globe-cta-actions">
+        <button onclick="openQuoteModal()" class="btn-gold">Get a Quote</button>
+        <a href="tel:3607979041" class="btn-outline-white" style="background:transparent;color:#ffffff;border-color:rgba(255,255,255,0.35);">Call 360-797-9041</a>
+      </div>
+    </div>
+    <div class="globe-cta-globe-wrap">
+      <canvas id="cta-globe"></canvas>
     </div>
   </div>
 </section>
@@ -1655,23 +1672,200 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.m
 
 
 <script type="module">
-/* ── COBE Globe — Polaroid Destinations ── */
+/* ── World Map — Destinations ── */
+import DottedMap from 'https://esm.sh/dotted-map@1';
+
+(function initWorldMap() {
+  const container = document.getElementById('dest-map-container');
+  if (!container) return;
+
+  const LINE_COLOR = '#b08a56';
+
+  const ROUTES = [
+    { start: { lat: 47.6,  lng: -122.3, label: 'Seattle'        }, end: { lat: 40.7,  lng:  -74.0, label: 'New York'      } },
+    { start: { lat: 47.6,  lng: -122.3, label: 'Seattle'        }, end: { lat: 25.8,  lng:  -80.2, label: 'Miami'         } },
+    { start: { lat: 47.6,  lng: -122.3, label: 'Seattle'        }, end: { lat: 34.1,  lng: -118.2, label: 'Los Angeles'   } },
+    { start: { lat: 47.6,  lng: -122.3, label: 'Seattle'        }, end: { lat: 21.3,  lng: -157.8, label: 'Honolulu'      } },
+    { start: { lat: 47.6,  lng: -122.3, label: 'Seattle'        }, end: { lat: 51.5,  lng:   -0.1, label: 'London'        } },
+    { start: { lat: 47.6,  lng: -122.3, label: 'Seattle'        }, end: { lat: 35.7,  lng:  139.7, label: 'Tokyo'         } },
+    { start: { lat: 25.8,  lng:  -80.2, label: 'Miami'          }, end: { lat: -22.9, lng:  -43.2, label: 'Rio de Janeiro' } },
+    { start: { lat: 51.5,  lng:   -0.1, label: 'London'         }, end: { lat: 25.2,  lng:   55.3, label: 'Dubai'         } },
+  ];
+
+  const DRAW_MS       = 2000;
+  const STAGGER_MS    = 500;
+  const PAUSE_MS      = 2500;
+  const TOTAL_DRAW_MS = ROUTES.length * STAGGER_MS + DRAW_MS;
+  const CYCLE_MS      = TOTAL_DRAW_MS + PAUSE_MS;
+
+  function projectPoint(lat, lng) {
+    return { x: (lng + 180) * (800 / 360), y: (90 - lat) * (400 / 180) };
+  }
+
+  function curvedPath(s, e) {
+    const midX = (s.x + e.x) / 2;
+    const midY = Math.min(s.y, e.y) - 50;
+    return 'M ' + s.x + ' ' + s.y + ' Q ' + midX + ' ' + midY + ' ' + e.x + ' ' + e.y;
+  }
+
+  function labelAnchor(x) {
+    if (x < 120) return { anchor: 'start',  dx:  8, dy: -10 };
+    if (x > 680) return { anchor: 'end',    dx: -8, dy: -10 };
+    return              { anchor: 'middle', dx:  0, dy: -12 };
+  }
+
+  // Build unique city list
+  var cityMap = new Map();
+  ROUTES.forEach(function(r) {
+    [r.start, r.end].forEach(function(pt) {
+      var key = pt.lat + ',' + pt.lng;
+      if (!cityMap.has(key)) cityMap.set(key, pt);
+    });
+  });
+  var cities = Array.from(cityMap.values());
+
+  // Generate dotted map background
+  var dmap = new DottedMap({ height: 100, grid: 'diagonal' });
+  var svgString = dmap.getSVG({ radius: 0.22, color: '#00000088', shape: 'circle', backgroundColor: 'transparent' });
+
+  // Build route path markup
+  var routeHTML = ROUTES.map(function(r, i) {
+    var s = projectPoint(r.start.lat, r.start.lng);
+    var e = projectPoint(r.end.lat,   r.end.lng);
+    return '<path id="route-' + i + '" d="' + curvedPath(s, e) + '" fill="none" stroke="' + LINE_COLOR + '" stroke-width="1.4" opacity="0"/>';
+  }).join('\n      ');
+
+  // Build moving dot markup
+  var dotHTML = ROUTES.map(function(_, i) {
+    return '<circle id="mdot-' + i + '" r="3.5" fill="' + LINE_COLOR + '" opacity="0"/>';
+  }).join('\n      ');
+
+  // Build city marker markup
+  var cityHTML = cities.map(function(city, ci) {
+    var p  = projectPoint(city.lat, city.lng);
+    var la = labelAnchor(p.x);
+    var px = p.x.toFixed(1), py = p.y.toFixed(1);
+    var pulseDur = (1.8 + ci * 0.15).toFixed(2) + 's';
+    return '<circle cx="' + px + '" cy="' + py + '" r="2.5" fill="' + LINE_COLOR + '" opacity="0.85"/>'
+      + '<circle cx="' + px + '" cy="' + py + '" r="2.5" fill="' + LINE_COLOR + '" opacity="0.3">'
+      + '<animate attributeName="r" from="2.5" to="9" dur="' + pulseDur + '" repeatCount="indefinite"/>'
+      + '<animate attributeName="opacity" from="0.4" to="0" dur="' + pulseDur + '" repeatCount="indefinite"/>'
+      + '</circle>'
+      + (city.label
+          ? '<text x="' + (p.x + la.dx).toFixed(1) + '" y="' + (p.y + la.dy).toFixed(1)
+            + '" text-anchor="' + la.anchor + '" class="city-label">' + city.label + '</text>'
+          : '');
+  }).join('\n      ');
+
+  container.innerHTML =
+    '<img class="dest-map-bg" src="data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString) + '" alt="" aria-hidden="true" draggable="false"/>'
+    + '<svg class="dest-map-overlay" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true">'
+    + '<defs>'
+    + '<linearGradient id="route-grad" x1="0%" y1="0%" x2="100%" y2="0%">'
+    + '<stop offset="0%"   stop-color="white"          stop-opacity="0"/>'
+    + '<stop offset="8%"   stop-color="' + LINE_COLOR + '" stop-opacity="1"/>'
+    + '<stop offset="92%"  stop-color="' + LINE_COLOR + '" stop-opacity="1"/>'
+    + '<stop offset="100%" stop-color="white"          stop-opacity="0"/>'
+    + '</linearGradient>'
+    + '</defs>'
+    + routeHTML
+    + dotHTML
+    + cityHTML
+    + '</svg>';
+
+  // Apply gradient fill to route paths
+  document.querySelectorAll('[id^="route-"]').forEach(function(el) {
+    el.setAttribute('stroke', 'url(#route-grad)');
+  });
+
+  container.classList.add('loaded');
+
+  var pathEls = ROUTES.map(function(_, i) { return document.getElementById('route-' + i); });
+  var dotEls  = ROUTES.map(function(_, i) { return document.getElementById('mdot-'  + i); });
+
+  // Measure path lengths after first render, then start animation
+  requestAnimationFrame(function() {
+    var lengths = pathEls.map(function(el) { return el ? el.getTotalLength() : 600; });
+
+    pathEls.forEach(function(el, i) {
+      if (!el) return;
+      var L = lengths[i];
+      el.setAttribute('stroke-dasharray',  L + ' ' + L);
+      el.setAttribute('stroke-dashoffset', L);
+    });
+
+    function easeInOut(t) { return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+
+    var startTime = null;
+
+    function frame(ts) {
+      if (startTime === null) startTime = ts;
+      var elapsed = (ts - startTime) % CYCLE_MS;
+
+      ROUTES.forEach(function(_, i) {
+        var drawStart = i * STAGGER_MS;
+        var drawEnd   = drawStart + DRAW_MS;
+        var fadeStart = TOTAL_DRAW_MS;
+        var pathEl = pathEls[i], dotEl = dotEls[i];
+        if (!pathEl || !dotEl) return;
+        var L = lengths[i];
+
+        if (elapsed < drawStart) {
+          // Waiting to start
+          pathEl.setAttribute('stroke-dashoffset', L);
+          pathEl.style.opacity = '0';
+          dotEl.style.opacity  = '0';
+
+        } else if (elapsed < drawEnd) {
+          // Drawing phase
+          var t  = easeInOut((elapsed - drawStart) / DRAW_MS);
+          pathEl.setAttribute('stroke-dashoffset', L * (1 - t));
+          pathEl.style.opacity = '1';
+          var pt = pathEl.getPointAtLength(t * L);
+          dotEl.setAttribute('cx', pt.x);
+          dotEl.setAttribute('cy', pt.y);
+          dotEl.style.opacity = '1';
+
+        } else if (elapsed < fadeStart) {
+          // Fully drawn, dot hidden
+          pathEl.setAttribute('stroke-dashoffset', 0);
+          pathEl.style.opacity = '1';
+          dotEl.style.opacity  = '0';
+
+        } else {
+          // Fade out before loop reset
+          var ft = Math.min(1, (elapsed - fadeStart) / (PAUSE_MS * 0.6));
+          pathEl.style.opacity = (1 - easeInOut(ft));
+          pathEl.setAttribute('stroke-dashoffset', 0);
+          dotEl.style.opacity = '0';
+        }
+      });
+
+      requestAnimationFrame(frame);
+    }
+
+    requestAnimationFrame(frame);
+  });
+})();
+</script>
+
+
+<script type="module">
+/* ── COBE Globe — Globe CTA Section ── */
 import createGlobe from 'https://esm.sh/cobe@0.6.3';
 
-(function initDestGlobe() {
-  const canvas     = document.getElementById('dest-globe');
-  const polaroidsEl = document.getElementById('globe-polaroids');
+(function initCtaGlobe() {
+  const canvas = document.getElementById('cta-globe');
   if (!canvas) return;
 
-  // Interaction state
-  let pointerDown = null;
-  let lastPointer = null;
-  let dragOffset  = { phi: 0, theta: 0 };
-  let velocity    = { phi: 0, theta: 0 };
-  let phiOffset   = 0;
-  let thetaOffset = 0;
-  let isPaused    = false;
-  const THETA_MIN = -0.35, THETA_MAX = 0.35;
+  let pointerDown  = null;
+  let lastPointer  = null;
+  let dragOffset   = { phi: 0, theta: 0 };
+  let velocity     = { phi: 0, theta: 0 };
+  let phiOffset    = 0;
+  let thetaOffset  = 0;
+  let isPaused     = false;
+  const THETA_MIN  = -0.4, THETA_MAX = 0.4;
 
   canvas.addEventListener('pointerdown', function(e) {
     pointerDown = { x: e.clientX, y: e.clientY };
@@ -1683,7 +1877,7 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
     dragOffset = { phi: (e.clientX - pointerDown.x) / 300, theta: (e.clientY - pointerDown.y) / 1000 };
     const now = Date.now();
     if (lastPointer) {
-      const dt = Math.max(now - lastPointer.t, 1), cap = 0.12;
+      const dt = Math.max(now - lastPointer.t, 1), cap = 0.15;
       velocity = {
         phi:   Math.max(-cap, Math.min(cap, ((e.clientX - lastPointer.x) / dt) * 0.3)),
         theta: Math.max(-cap, Math.min(cap, ((e.clientY - lastPointer.y) / dt) * 0.08)),
@@ -1703,154 +1897,46 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
     isPaused = false;
   }, { passive: true });
 
-  // Polaroid marker definitions — key global destinations with photos
-  const polaroidDefs = [
-    {
-      id: 'seattle', lat: 47.6, lon: -122.3, size: 0.055, rotate: -4,
-      label: 'Seattle',
-      image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=140&h=140&fit=crop',
-    },
-    {
-      id: 'los-angeles', lat: 34.1, lon: -118.2, size: 0.038, rotate: 4,
-      label: 'Los Angeles',
-      image: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=140&h=140&fit=crop',
-    },
-    {
-      id: 'new-york', lat: 40.7, lon: -74.0, size: 0.042, rotate: -3,
-      label: 'New York',
-      image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=140&h=140&fit=crop',
-    },
-    {
-      id: 'miami', lat: 25.8, lon: -80.2, size: 0.034, rotate: 5,
-      label: 'Miami',
-      image: 'https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?w=140&h=140&fit=crop',
-    },
-    {
-      id: 'honolulu', lat: 21.3, lon: -157.8, size: 0.034, rotate: -5,
-      label: 'Honolulu',
-      image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=140&h=140&fit=crop',
-    },
-    {
-      id: 'london', lat: 51.5, lon: -0.1, size: 0.038, rotate: 3,
-      label: 'London',
-      image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=140&h=140&fit=crop',
-    },
-    {
-      id: 'paris', lat: 48.9, lon: 2.3, size: 0.038, rotate: -4,
-      label: 'Paris',
-      image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=140&h=140&fit=crop',
-    },
-    {
-      id: 'dubai', lat: 25.2, lon: 55.3, size: 0.034, rotate: 4,
-      label: 'Dubai',
-      image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=140&h=140&fit=crop',
-    },
-    {
-      id: 'tokyo', lat: 35.7, lon: 139.7, size: 0.038, rotate: -3,
-      label: 'Tokyo',
-      image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=140&h=140&fit=crop',
-    },
-    {
-      id: 'sydney', lat: -33.9, lon: 151.2, size: 0.034, rotate: 5,
-      label: 'Sydney',
-      image: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=140&h=140&fit=crop',
-    },
+  const MARKERS = [
+    { location: [47.6,  -122.3], size: 0.055 }, // Seattle (home base)
+    { location: [34.1,  -118.2], size: 0.038 }, // Los Angeles
+    { location: [40.7,   -74.0], size: 0.042 }, // New York
+    { location: [25.8,   -80.2], size: 0.034 }, // Miami
+    { location: [21.3,  -157.8], size: 0.034 }, // Honolulu
+    { location: [51.5,    -0.1], size: 0.038 }, // London
+    { location: [48.9,     2.3], size: 0.036 }, // Paris
+    { location: [25.2,    55.3], size: 0.034 }, // Dubai
+    { location: [35.7,   139.7], size: 0.038 }, // Tokyo
+    { location: [-33.9,  151.2], size: 0.034 }, // Sydney
+    { location: [49.3,  -123.1], size: 0.022 }, // Vancouver
+    { location: [43.5,  -110.8], size: 0.022 }, // Jackson Hole
+    { location: [39.2,  -106.8], size: 0.022 }, // Aspen
+    { location: [41.9,   -87.6], size: 0.022 }, // Chicago
+    { location: [22.9,  -109.9], size: 0.022 }, // Cabo
+    { location: [-33.9,   18.4], size: 0.022 }, // Cape Town
+    { location: [-22.9,  -43.2], size: 0.022 }, // Rio
+    { location: [41.0,    28.9], size: 0.022 }, // Istanbul
+    { location: [4.2,     73.5], size: 0.018 }, // Maldives
   ];
 
-  // Supporting dot-only markers (no polaroid)
-  const dotOnlyMarkers = [
-    { lat: 49.3, lon: -123.1, size: 0.022 }, // Vancouver
-    { lat: 43.5, lon: -110.8, size: 0.022 }, // Jackson Hole
-    { lat: 39.2, lon: -106.8, size: 0.022 }, // Aspen
-    { lat: 36.2, lon: -115.1, size: 0.022 }, // Las Vegas
-    { lat: 39.7, lon: -104.9, size: 0.022 }, // Denver
-    { lat: 41.9, lon: -87.6,  size: 0.022 }, // Chicago
-    { lat: 22.9, lon: -109.9, size: 0.022 }, // Cabo
-    { lat: 48.9, lon: 2.3,    size: 0.022 }, // already in polaroids but add arc endpoint
-    { lat: 52.4, lon: 13.4,   size: 0.02  }, // Berlin
-    { lat: 41.0, lon: 28.9,   size: 0.022 }, // Istanbul
-    { lat: 43.8, lon: 11.2,   size: 0.018 }, // Florence
-    { lat: 4.2,  lon: 73.5,   size: 0.018 }, // Maldives
-    { lat: 22.3, lon: 114.2,  size: 0.022 }, // Hong Kong
-    { lat: -33.9, lon: 18.4,  size: 0.022 }, // Cape Town
-    { lat: -22.9, lon: -43.2, size: 0.022 }, // Rio
-  ];
-
-  // Arcs — key routes
-  const arcs = [
+  const ARCS = [
     { from: [47.6, -122.3], to: [40.7,  -74.0] }, // Seattle → New York
     { from: [47.6, -122.3], to: [25.8,  -80.2] }, // Seattle → Miami
     { from: [47.6, -122.3], to: [34.1, -118.2] }, // Seattle → Los Angeles
     { from: [47.6, -122.3], to: [21.3, -157.8] }, // Seattle → Honolulu
     { from: [47.6, -122.3], to: [51.5,   -0.1] }, // Seattle → London
     { from: [47.6, -122.3], to: [35.7,  139.7] }, // Seattle → Tokyo
-    { from: [47.6, -122.3], to: [43.5, -110.8] }, // Seattle → Jackson Hole
-    { from: [47.6, -122.3], to: [22.9, -109.9] }, // Seattle → Cabo
-    { from: [47.6, -122.3], to: [39.7, -104.9] }, // Seattle → Denver
-    { from: [47.6, -122.3], to: [41.9,  -87.6] }, // Seattle → Chicago
     { from: [40.7,  -74.0], to: [51.5,   -0.1] }, // New York → London
-    { from: [40.7,  -74.0], to: [25.8,  -80.2] }, // New York → Miami
     { from: [25.8,  -80.2], to: [-22.9, -43.2] }, // Miami → Rio
-    { from: [51.5,   -0.1], to: [48.9,    2.3] }, // London → Paris
-    { from: [51.5,   -0.1], to: [41.0,   28.9] }, // London → Istanbul
-    { from: [48.9,    2.3], to: [43.8,   11.2] }, // Paris → Florence
-    { from: [41.0,   28.9], to: [25.2,   55.3] }, // Istanbul → Dubai
-    { from: [25.2,   55.3], to: [ 4.2,   73.5] }, // Dubai → Maldives
-    { from: [35.7,  139.7], to: [22.3,  114.2] }, // Tokyo → Hong Kong
+    { from: [51.5,   -0.1], to: [25.2,   55.3] }, // London → Dubai
     { from: [35.7,  139.7], to: [-33.9, 151.2] }, // Tokyo → Sydney
     { from: [-33.9,  18.4], to: [25.2,   55.3] }, // Cape Town → Dubai
-    { from: [34.1,  -118.2],to: [39.2,  -106.8]}, // LA → Aspen
   ];
-
-  // Build polaroid DOM elements
-  const polaroidEls = {};
-  if (polaroidsEl) {
-    polaroidDefs.forEach(function(m) {
-      const card = document.createElement('div');
-      card.className = 'globe-polaroid';
-      card.style.opacity = '0';
-
-      const img = document.createElement('img');
-      img.src = m.image;
-      img.alt = m.label;
-      img.style.cssText = 'display:block;width:72px;height:72px;object-fit:cover;background:#edf2f5;';
-
-      const cap = document.createElement('span');
-      cap.className = 'globe-polaroid-caption';
-      cap.textContent = m.label;
-
-      card.appendChild(img);
-      card.appendChild(cap);
-      polaroidsEl.appendChild(card);
-      polaroidEls[m.id] = card;
-    });
-  }
-
-  // Project lat/lon → 2D screen coords matching COBE's coordinate system
-  function project(lat, lon, phi, theta, width) {
-    const latR = lat * Math.PI / 180;
-    const lonR = lon * Math.PI / 180;
-    const x  = Math.cos(latR) * Math.sin(lonR);
-    const y  = Math.sin(latR);
-    const z  = Math.cos(latR) * Math.cos(lonR);
-    const rx  = z * Math.sin(phi) - x * Math.cos(phi);
-    const rz0 = x * Math.sin(phi) + z * Math.cos(phi);
-    const ry2 = y * Math.cos(theta) - rz0 * Math.sin(theta);
-    const rz2 = y * Math.sin(theta) + rz0 * Math.cos(theta);
-    const r   = width / 2;
-    return { sx: r + rx * r, sy: r - ry2 * r, visible: rz2 < 0 };
-  }
 
   const BASE_THETA = 0.22;
   const BASE_SPEED = 0.0018;
-  let phi = 1.5;
+  let phi   = 1.5;
   let globe = null;
-
-  const allMarkers = polaroidDefs.map(function(m) {
-    return { location: [m.lat, m.lon], size: m.size };
-  }).concat(dotOnlyMarkers.map(function(m) {
-    return { location: [m.lat, m.lon], size: m.size };
-  }));
 
   function init() {
     const width = canvas.offsetWidth;
@@ -1860,17 +1946,20 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
       devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
       width, height: width,
       phi, theta: BASE_THETA,
-      dark: 0, diffuse: 1.5,
-      mapSamples: 16000, mapBrightness: 10,
-      baseColor:   [0.93, 0.95, 0.96], // #edf2f5
-      markerColor: [0.69, 0.54, 0.34], // #b08a56 gold
-      glowColor:   [0.42, 0.51, 0.58], // #6b8293 primary
+      dark:          1,
+      diffuse:       1.1,
+      mapSamples:    16000,
+      mapBrightness: 4,
+      baseColor:     [0.08, 0.10, 0.12],  // near-black base
+      markerColor:   [0.69, 0.54, 0.34],  // brand gold #b08a56
+      glowColor:     [0.69, 0.54, 0.34],  // gold glow
       markerElevation: 0.01,
-      markers: allMarkers,
-      arcs: arcs.map(function(a, i) { return { from: a.from, to: a.to, id: 'arc-' + i }; }),
-      arcColor: [0.42, 0.51, 0.58],
-      arcWidth: 0.5, arcHeight: 0.28,
-      opacity: 0.75,
+      markers: MARKERS,
+      arcs: ARCS.map(function(a, i) { return { from: a.from, to: a.to, id: 'cta-arc-' + i }; }),
+      arcColor:  [0.42, 0.51, 0.58],      // brand primary #6b8293
+      arcWidth:  0.5,
+      arcHeight: 0.28,
+      opacity:   0.75,
       onRender: function(state) {
         if (!isPaused) {
           phi += BASE_SPEED;
@@ -1883,23 +1972,8 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
           if (thetaOffset < THETA_MIN) thetaOffset += (THETA_MIN - thetaOffset) * 0.1;
           else if (thetaOffset > THETA_MAX) thetaOffset += (THETA_MAX - thetaOffset) * 0.1;
         }
-        const curPhi   = phi + phiOffset   + dragOffset.phi;
-        const curTheta = BASE_THETA + thetaOffset + dragOffset.theta;
-        state.phi   = curPhi;
-        state.theta = curTheta;
-
-        // Update polaroid positions
-        if (polaroidsEl) {
-          const w = canvas.offsetWidth;
-          polaroidDefs.forEach(function(m) {
-            const el = polaroidEls[m.id];
-            if (!el) return;
-            const p = project(m.lat, m.lon, curPhi, curTheta, w);
-            el.style.opacity = p.visible ? '1' : '0';
-            el.style.filter  = p.visible ? 'none' : 'blur(4px)';
-            el.style.transform = 'translate(' + p.sx + 'px,' + p.sy + 'px) translate(-50%,calc(-100% - 14px)) rotate(' + m.rotate + 'deg)';
-          });
-        }
+        state.phi   = phi + phiOffset + dragOffset.phi;
+        state.theta = BASE_THETA + thetaOffset + dragOffset.theta;
       },
     });
 
