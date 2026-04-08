@@ -528,32 +528,11 @@
     .dest-inner { max-width: 1320px; margin: 0 auto; position: relative; z-index: 1; }
     .dest-title { color: #0a0f1e; }
 
-    .dest-chips {
-      display: flex; flex-wrap: wrap; gap: 0.875rem; justify-content: center;
-    }
-    .dest-chip {
-      display: inline-flex; flex-direction: column; align-items: center;
-      padding: 0.7rem 1.5rem;
-      background: rgba(107,130,147,0.08);
-      border: 1px solid rgba(107,130,147,0.25);
-      border-radius: var(--r); cursor: default;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .dest-chip:hover { background: rgba(107,130,147,0.15); border-color: rgba(107,130,147,0.5); }
-    .dest-chip-name {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: #0a0f1e;
-    }
-    .dest-chip-tag {
-      font-size: 0.58rem; font-weight: 400; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--gold); margin-top: 0.2rem;
-    }
-
     /* ── COBE Globe (Destinations) ── */
     .globe-wrap {
       position: relative;
-      width: 100%; max-width: 560px;
-      margin: 0 auto 3rem;
+      width: 100%; max-width: 640px;
+      margin: 0 auto;
       aspect-ratio: 1;
     }
     #dest-globe {
@@ -564,28 +543,39 @@
     }
     #dest-globe:active { cursor: grabbing; }
 
-    /* Globe marker labels (JS-positioned) */
-    #globe-labels { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
-    .globe-label {
+    /* Polaroid cards (JS-positioned) */
+    #globe-polaroids { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+    .globe-polaroid {
       position: absolute;
-      transform: translate(-50%, calc(-100% - 9px));
-      padding: 3px 7px 3px;
-      background: #2b2f34;
-      color: #ffffff;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.52rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; white-space: nowrap;
-      border-radius: 2px;
+      top: 0; left: 0;
+      background: #ffffff;
+      padding: 7px 7px 28px;
+      box-shadow:
+        0 4px 16px rgba(43,47,52,0.18),
+        0 1px 4px rgba(43,47,52,0.1),
+        inset 0 0 0 0.5px rgba(43,47,52,0.06);
       pointer-events: none;
-      transition: opacity 0.45s;
+      transition: opacity 0.4s ease, filter 0.4s ease;
+      will-change: transform;
     }
-    .globe-label::after {
+    .globe-polaroid img {
+      display: block; width: 72px; height: 72px;
+      object-fit: cover; background: var(--blue);
+    }
+    .globe-polaroid-caption {
+      position: absolute; bottom: 7px; left: 0; right: 0;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.44rem; font-weight: 700; letter-spacing: 0.12em;
+      color: #2b2f34; text-transform: uppercase;
+    }
+    /* stem connecting polaroid to dot */
+    .globe-polaroid::after {
       content: '';
-      position: absolute;
-      top: 100%; left: 50%;
+      position: absolute; bottom: -10px; left: 50%;
       transform: translateX(-50%);
-      border: 4px solid transparent;
-      border-top-color: #2b2f34;
+      width: 1px; height: 10px;
+      background: rgba(176,138,86,0.6);
     }
 
     /* ── CTA Banner ── */
@@ -1293,54 +1283,10 @@
       <p style="font-size:0.88rem;font-weight:300;color:rgba(10,15,30,0.5);margin-top:1rem;max-width:520px;line-height:1.75;">From the Pacific Northwest to sought-after destinations across the globe — Cascade Aviation Group puts any runway within reach.</p>
     </div>
 
-    <!-- COBE Globe -->
+    <!-- COBE Globe with Polaroids -->
     <div class="globe-wrap">
       <canvas id="dest-globe"></canvas>
-      <div id="globe-labels"></div>
-    </div>
-
-    <!-- Destination chips -->
-    <div class="dest-chips">
-      <div class="dest-chip"><span class="dest-chip-name">Seattle, WA</span><span class="dest-chip-tag">Home Base</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Portland, OR</span><span class="dest-chip-tag">Pacific Northwest</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Vancouver, BC</span><span class="dest-chip-tag">International Gateway</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Sun Valley, ID</span><span class="dest-chip-tag">Mountain Escape</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Big Sky, MT</span><span class="dest-chip-tag">Big Mountain Skiing</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Jackson Hole, WY</span><span class="dest-chip-tag">Premier Resort</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Park City, UT</span><span class="dest-chip-tag">Mountain Haven</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">San Francisco, CA</span><span class="dest-chip-tag">Business &amp; Culture</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Napa Valley, CA</span><span class="dest-chip-tag">Wine Country</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Los Angeles, CA</span><span class="dest-chip-tag">Entertainment Capital</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Palm Springs, CA</span><span class="dest-chip-tag">Desert Oasis</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Las Vegas, NV</span><span class="dest-chip-tag">World-Class Entertainment</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Scottsdale, AZ</span><span class="dest-chip-tag">Desert Luxury</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Denver, CO</span><span class="dest-chip-tag">Mile High Gateway</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Aspen, CO</span><span class="dest-chip-tag">Ski &amp; Luxury</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Telluride, CO</span><span class="dest-chip-tag">Remote Mountain Luxury</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Chicago, IL</span><span class="dest-chip-tag">Midwest Metropolis</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Miami, FL</span><span class="dest-chip-tag">Art &amp; Ocean</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">New York, NY</span><span class="dest-chip-tag">Financial &amp; Culture</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Cabo San Lucas</span><span class="dest-chip-tag">Beachside Retreat</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Honolulu, HI</span><span class="dest-chip-tag">Island Paradise</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Caribbean</span><span class="dest-chip-tag">Tropical Escape</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Rio de Janeiro</span><span class="dest-chip-tag">South America</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">London</span><span class="dest-chip-tag">Historic Capital</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Paris</span><span class="dest-chip-tag">City of Light</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Monaco</span><span class="dest-chip-tag">Riviera Glamour</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Mykonos</span><span class="dest-chip-tag">Aegean Luxury</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Florence</span><span class="dest-chip-tag">Renaissance Art &amp; Food</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Zürich</span><span class="dest-chip-tag">Alpine Sophistication</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Berlin</span><span class="dest-chip-tag">Culture &amp; History</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Istanbul</span><span class="dest-chip-tag">East Meets West</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Marrakech</span><span class="dest-chip-tag">Exotic North Africa</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Cape Town</span><span class="dest-chip-tag">Africa's Jewel</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Dubai</span><span class="dest-chip-tag">Ultra-Luxury</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Maldives</span><span class="dest-chip-tag">Overwater Paradise</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Tokyo</span><span class="dest-chip-tag">Tradition &amp; Modernity</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Hong Kong</span><span class="dest-chip-tag">Asia's World City</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Singapore</span><span class="dest-chip-tag">Garden City</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Bali</span><span class="dest-chip-tag">Island Sanctuary</span></div>
-      <div class="dest-chip"><span class="dest-chip-name">Sydney</span><span class="dest-chip-tag">Harbour City</span></div>
+      <div id="globe-polaroids"></div>
     </div>
   </div>
 </section>
@@ -1709,23 +1655,23 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.m
 
 
 <script type="module">
-/* ── COBE Globe — Destinations (refined) ── */
+/* ── COBE Globe — Polaroid Destinations ── */
 import createGlobe from 'https://esm.sh/cobe@0.6.3';
 
 (function initDestGlobe() {
-  const canvas  = document.getElementById('dest-globe');
-  const labelsEl = document.getElementById('globe-labels');
+  const canvas     = document.getElementById('dest-globe');
+  const polaroidsEl = document.getElementById('globe-polaroids');
   if (!canvas) return;
 
   // Interaction state
-  let pointerDown   = null;
-  let lastPointer   = null;
-  let dragOffset    = { phi: 0, theta: 0 };
-  let velocity      = { phi: 0, theta: 0 };
-  let phiOffset     = 0;
-  let thetaOffset   = 0;
-  let isPaused      = false;
-  const THETA_MIN   = -0.4, THETA_MAX = 0.4;
+  let pointerDown = null;
+  let lastPointer = null;
+  let dragOffset  = { phi: 0, theta: 0 };
+  let velocity    = { phi: 0, theta: 0 };
+  let phiOffset   = 0;
+  let thetaOffset = 0;
+  let isPaused    = false;
+  const THETA_MIN = -0.35, THETA_MAX = 0.35;
 
   canvas.addEventListener('pointerdown', function(e) {
     pointerDown = { x: e.clientX, y: e.clientY };
@@ -1734,13 +1680,10 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
   });
   window.addEventListener('pointermove', function(e) {
     if (!pointerDown) return;
-    const dx = e.clientX - pointerDown.x;
-    const dy = e.clientY - pointerDown.y;
-    dragOffset = { phi: dx / 300, theta: dy / 1000 };
+    dragOffset = { phi: (e.clientX - pointerDown.x) / 300, theta: (e.clientY - pointerDown.y) / 1000 };
     const now = Date.now();
     if (lastPointer) {
-      const dt = Math.max(now - lastPointer.t, 1);
-      const cap = 0.15;
+      const dt = Math.max(now - lastPointer.t, 1), cap = 0.12;
       velocity = {
         phi:   Math.max(-cap, Math.min(cap, ((e.clientX - lastPointer.x) / dt) * 0.3)),
         theta: Math.max(-cap, Math.min(cap, ((e.clientY - lastPointer.y) / dt) * 0.08)),
@@ -1760,136 +1703,140 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
     isPaused = false;
   }, { passive: true });
 
-  // Destinations (Seattle-based + international routes)
+  // Polaroid marker definitions — key global destinations with photos
+  const polaroidDefs = [
+    {
+      id: 'seattle', lat: 47.6, lon: -122.3, size: 0.055, rotate: -4,
+      label: 'Seattle',
+      image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=140&h=140&fit=crop',
+    },
+    {
+      id: 'los-angeles', lat: 34.1, lon: -118.2, size: 0.038, rotate: 4,
+      label: 'Los Angeles',
+      image: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=140&h=140&fit=crop',
+    },
+    {
+      id: 'new-york', lat: 40.7, lon: -74.0, size: 0.042, rotate: -3,
+      label: 'New York',
+      image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=140&h=140&fit=crop',
+    },
+    {
+      id: 'miami', lat: 25.8, lon: -80.2, size: 0.034, rotate: 5,
+      label: 'Miami',
+      image: 'https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?w=140&h=140&fit=crop',
+    },
+    {
+      id: 'honolulu', lat: 21.3, lon: -157.8, size: 0.034, rotate: -5,
+      label: 'Honolulu',
+      image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=140&h=140&fit=crop',
+    },
+    {
+      id: 'london', lat: 51.5, lon: -0.1, size: 0.038, rotate: 3,
+      label: 'London',
+      image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=140&h=140&fit=crop',
+    },
+    {
+      id: 'paris', lat: 48.9, lon: 2.3, size: 0.038, rotate: -4,
+      label: 'Paris',
+      image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=140&h=140&fit=crop',
+    },
+    {
+      id: 'dubai', lat: 25.2, lon: 55.3, size: 0.034, rotate: 4,
+      label: 'Dubai',
+      image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=140&h=140&fit=crop',
+    },
+    {
+      id: 'tokyo', lat: 35.7, lon: 139.7, size: 0.038, rotate: -3,
+      label: 'Tokyo',
+      image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=140&h=140&fit=crop',
+    },
+    {
+      id: 'sydney', lat: -33.9, lon: 151.2, size: 0.034, rotate: 5,
+      label: 'Sydney',
+      image: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=140&h=140&fit=crop',
+    },
+  ];
+
+  // Supporting dot-only markers (no polaroid)
+  const dotOnlyMarkers = [
+    { lat: 49.3, lon: -123.1, size: 0.022 }, // Vancouver
+    { lat: 43.5, lon: -110.8, size: 0.022 }, // Jackson Hole
+    { lat: 39.2, lon: -106.8, size: 0.022 }, // Aspen
+    { lat: 36.2, lon: -115.1, size: 0.022 }, // Las Vegas
+    { lat: 39.7, lon: -104.9, size: 0.022 }, // Denver
+    { lat: 41.9, lon: -87.6,  size: 0.022 }, // Chicago
+    { lat: 22.9, lon: -109.9, size: 0.022 }, // Cabo
+    { lat: 48.9, lon: 2.3,    size: 0.022 }, // already in polaroids but add arc endpoint
+    { lat: 52.4, lon: 13.4,   size: 0.02  }, // Berlin
+    { lat: 41.0, lon: 28.9,   size: 0.022 }, // Istanbul
+    { lat: 43.8, lon: 11.2,   size: 0.018 }, // Florence
+    { lat: 4.2,  lon: 73.5,   size: 0.018 }, // Maldives
+    { lat: 22.3, lon: 114.2,  size: 0.022 }, // Hong Kong
+    { lat: -33.9, lon: 18.4,  size: 0.022 }, // Cape Town
+    { lat: -22.9, lon: -43.2, size: 0.022 }, // Rio
+  ];
+
+  // Arcs — key routes
   const arcs = [
-    // North America
     { from: [47.6, -122.3], to: [40.7,  -74.0] }, // Seattle → New York
     { from: [47.6, -122.3], to: [25.8,  -80.2] }, // Seattle → Miami
     { from: [47.6, -122.3], to: [34.1, -118.2] }, // Seattle → Los Angeles
-    { from: [47.6, -122.3], to: [22.9, -109.9] }, // Seattle → Cabo
-    { from: [47.6, -122.3], to: [43.5, -110.8] }, // Seattle → Jackson Hole
-    { from: [47.6, -122.3], to: [36.2, -115.1] }, // Seattle → Las Vegas
-    { from: [47.6, -122.3], to: [43.7, -114.4] }, // Seattle → Sun Valley
-    { from: [47.6, -122.3], to: [33.5, -111.9] }, // Seattle → Scottsdale
-    { from: [47.6, -122.3], to: [40.6, -111.5] }, // Seattle → Park City
-    { from: [47.6, -122.3], to: [45.3, -111.4] }, // Seattle → Big Sky
-    { from: [47.6, -122.3], to: [45.5, -122.7] }, // Seattle → Portland
     { from: [47.6, -122.3], to: [21.3, -157.8] }, // Seattle → Honolulu
+    { from: [47.6, -122.3], to: [51.5,   -0.1] }, // Seattle → London
+    { from: [47.6, -122.3], to: [35.7,  139.7] }, // Seattle → Tokyo
+    { from: [47.6, -122.3], to: [43.5, -110.8] }, // Seattle → Jackson Hole
+    { from: [47.6, -122.3], to: [22.9, -109.9] }, // Seattle → Cabo
     { from: [47.6, -122.3], to: [39.7, -104.9] }, // Seattle → Denver
     { from: [47.6, -122.3], to: [41.9,  -87.6] }, // Seattle → Chicago
-    { from: [40.7,  -74.0], to: [25.8,  -80.2] }, // New York → Miami
-    { from: [34.1, -118.2], to: [39.2, -106.8] }, // LA → Aspen
-    { from: [34.1, -118.2], to: [33.8, -116.5] }, // LA → Palm Springs
-    { from: [34.1, -118.2], to: [38.5, -122.3] }, // LA → Napa Valley
-    { from: [39.7, -104.9], to: [37.9, -107.8] }, // Denver → Telluride
-    // International
-    { from: [47.6, -122.3], to: [51.5,   -0.1] }, // Seattle → London
-    { from: [47.6, -122.3], to: [48.9,    2.3] }, // Seattle → Paris
-    { from: [47.6, -122.3], to: [35.7,  139.7] }, // Seattle → Tokyo
-    { from: [47.6, -122.3], to: [22.3,  114.2] }, // Seattle → Hong Kong
-    { from: [47.6, -122.3], to: [-33.9,  18.4] }, // Seattle → Cape Town
     { from: [40.7,  -74.0], to: [51.5,   -0.1] }, // New York → London
-    { from: [40.7,  -74.0], to: [48.9,    2.3] }, // New York → Paris
-    { from: [25.8,  -80.2], to: [18.5,  -72.3] }, // Miami → Caribbean (Nassau)
-    { from: [25.8,  -80.2], to: [-22.9,  -43.2] }, // Miami → Rio de Janeiro
-    { from: [34.1, -118.2], to: [ 2.2,  102.2] }, // LA → Singapore
+    { from: [40.7,  -74.0], to: [25.8,  -80.2] }, // New York → Miami
+    { from: [25.8,  -80.2], to: [-22.9, -43.2] }, // Miami → Rio
     { from: [51.5,   -0.1], to: [48.9,    2.3] }, // London → Paris
-    { from: [51.5,   -0.1], to: [52.4,   13.4] }, // London → Berlin
     { from: [51.5,   -0.1], to: [41.0,   28.9] }, // London → Istanbul
     { from: [48.9,    2.3], to: [43.8,   11.2] }, // Paris → Florence
-    { from: [48.9,    2.3], to: [43.7,    7.4] }, // Paris → Monaco
-    { from: [48.9,    2.3], to: [47.4,    8.5] }, // Paris → Zürich
-    { from: [48.9,    2.3], to: [37.4,   25.4] }, // Paris → Mykonos
-    { from: [48.9,    2.3], to: [31.6,   -8.0] }, // Paris → Marrakech
     { from: [41.0,   28.9], to: [25.2,   55.3] }, // Istanbul → Dubai
     { from: [25.2,   55.3], to: [ 4.2,   73.5] }, // Dubai → Maldives
-    { from: [25.2,   55.3], to: [ 2.2,  102.2] }, // Dubai → Singapore
     { from: [35.7,  139.7], to: [22.3,  114.2] }, // Tokyo → Hong Kong
     { from: [35.7,  139.7], to: [-33.9, 151.2] }, // Tokyo → Sydney
-    { from: [22.3,  114.2], to: [ -8.3, 115.2] }, // Hong Kong → Bali
-    { from: [-33.9,  18.4], to: [31.6,   -8.0] }, // Cape Town → Marrakech
+    { from: [-33.9,  18.4], to: [25.2,   55.3] }, // Cape Town → Dubai
+    { from: [34.1,  -118.2],to: [39.2,  -106.8]}, // LA → Aspen
   ];
 
-  const markerDefs = [
-    // Pacific Northwest & Canada
-    { id: 'seattle',       lat: 47.6,  lon: -122.3, size: 0.06,  label: 'Seattle'      },
-    { id: 'vancouver',     lat: 49.3,  lon: -123.1, size: 0.028, label: 'Vancouver'    },
-    { id: 'portland',      lat: 45.5,  lon: -122.7, size: 0.022, label: 'Portland'     },
-    // Mountain West
-    { id: 'big-sky',       lat: 45.3,  lon: -111.4, size: 0.022, label: 'Big Sky'      },
-    { id: 'sun-valley',    lat: 43.7,  lon: -114.4, size: 0.022, label: 'Sun Valley'   },
-    { id: 'jackson-hole',  lat: 43.5,  lon: -110.8, size: 0.025, label: 'Jackson Hole' },
-    { id: 'park-city',     lat: 40.6,  lon: -111.5, size: 0.022, label: 'Park City'    },
-    { id: 'denver',        lat: 39.7,  lon: -104.9, size: 0.025, label: 'Denver'       },
-    { id: 'aspen',         lat: 39.2,  lon: -106.8, size: 0.025, label: 'Aspen'        },
-    { id: 'telluride',     lat: 37.9,  lon: -107.8, size: 0.022, label: 'Telluride'    },
-    // Southwest & California
-    { id: 'san-francisco', lat: 37.8,  lon: -122.4, size: 0.025, label: 'San Francisco'},
-    { id: 'napa-valley',   lat: 38.5,  lon: -122.3, size: 0.022, label: 'Napa Valley'  },
-    { id: 'los-angeles',   lat: 34.1,  lon: -118.2, size: 0.03,  label: 'Los Angeles'  },
-    { id: 'palm-springs',  lat: 33.8,  lon: -116.5, size: 0.022, label: 'Palm Springs' },
-    { id: 'las-vegas',     lat: 36.2,  lon: -115.1, size: 0.025, label: 'Las Vegas'    },
-    { id: 'scottsdale',    lat: 33.5,  lon: -111.9, size: 0.022, label: 'Scottsdale'   },
-    // East Coast & Midwest
-    { id: 'chicago',       lat: 41.9,  lon:  -87.6, size: 0.025, label: 'Chicago'      },
-    { id: 'new-york',      lat: 40.7,  lon:  -74.0, size: 0.035, label: 'New York'     },
-    { id: 'miami',         lat: 25.8,  lon:  -80.2, size: 0.03,  label: 'Miami'        },
-    // Hawaii & Mexico
-    { id: 'honolulu',      lat: 21.3,  lon: -157.8, size: 0.028, label: 'Honolulu'     },
-    { id: 'cabo',          lat: 22.9,  lon: -109.9, size: 0.028, label: 'Cabo'         },
-    // Europe
-    { id: 'london',        lat: 51.5,  lon:   -0.1, size: 0.028, label: 'London'       },
-    { id: 'paris',         lat: 48.9,  lon:    2.3, size: 0.028, label: 'Paris'        },
-    { id: 'berlin',        lat: 52.4,  lon:   13.4, size: 0.022, label: 'Berlin'       },
-    { id: 'florence',      lat: 43.8,  lon:   11.2, size: 0.022, label: 'Florence'     },
-    { id: 'istanbul',      lat: 41.0,  lon:   28.9, size: 0.022, label: 'Istanbul'     },
-    { id: 'mykonos',       lat: 37.4,  lon:   25.4, size: 0.02,  label: 'Mykonos'      },
-    { id: 'monaco',        lat: 43.7,  lon:    7.4, size: 0.02,  label: 'Monaco'       },
-    { id: 'zurich',        lat: 47.4,  lon:    8.5, size: 0.022, label: 'Zürich'       },
-    // Middle East
-    { id: 'dubai',         lat: 25.2,  lon:   55.3, size: 0.028, label: 'Dubai'        },
-    { id: 'maldives',      lat:  4.2,  lon:   73.5, size: 0.022, label: 'Maldives'     },
-    // Asia-Pacific
-    { id: 'tokyo',         lat: 35.7,  lon:  139.7, size: 0.03,  label: 'Tokyo'        },
-    { id: 'hong-kong',     lat: 22.3,  lon:  114.2, size: 0.025, label: 'Hong Kong'    },
-    { id: 'singapore',     lat:  2.2,  lon:  102.2, size: 0.025, label: 'Singapore'    },
-    { id: 'sydney',        lat: -33.9, lon:  151.2, size: 0.025, label: 'Sydney'       },
-    { id: 'bali',          lat:  -8.3, lon:  115.2, size: 0.022, label: 'Bali'         },
-    // South America & Caribbean
-    { id: 'rio',           lat: -22.9, lon:  -43.2, size: 0.025, label: 'Rio de Janeiro'},
-    { id: 'nassau',        lat: 18.5,  lon:  -72.3, size: 0.022, label: 'Caribbean'    },
-    // Africa
-    { id: 'cape-town',     lat: -33.9, lon:   18.4, size: 0.025, label: 'Cape Town'    },
-    { id: 'marrakech',     lat: 31.6,  lon:   -8.0, size: 0.022, label: 'Marrakech'    },
-  ];
+  // Build polaroid DOM elements
+  const polaroidEls = {};
+  if (polaroidsEl) {
+    polaroidDefs.forEach(function(m) {
+      const card = document.createElement('div');
+      card.className = 'globe-polaroid';
+      card.style.opacity = '0';
 
-  // Build label DOM elements
-  const labelEls = {};
-  if (labelsEl) {
-    markerDefs.forEach(function(m) {
-      const el = document.createElement('div');
-      el.className = 'globe-label';
-      el.textContent = m.label;
-      el.style.opacity = '0';
-      labelsEl.appendChild(el);
-      labelEls[m.id] = el;
+      const img = document.createElement('img');
+      img.src = m.image;
+      img.alt = m.label;
+      img.style.cssText = 'display:block;width:72px;height:72px;object-fit:cover;background:#edf2f5;';
+
+      const cap = document.createElement('span');
+      cap.className = 'globe-polaroid-caption';
+      cap.textContent = m.label;
+
+      card.appendChild(img);
+      card.appendChild(cap);
+      polaroidsEl.appendChild(card);
+      polaroidEls[m.id] = card;
     });
   }
 
-  // Project lat/lon to 2D screen coords matching COBE's coordinate system
+  // Project lat/lon → 2D screen coords matching COBE's coordinate system
   function project(lat, lon, phi, theta, width) {
     const latR = lat * Math.PI / 180;
     const lonR = lon * Math.PI / 180;
-    const x = Math.cos(latR) * Math.sin(lonR);
-    const y = Math.sin(latR);
-    const z = Math.cos(latR) * Math.cos(lonR);
-    // Rotate by phi (Y-axis) — rx negated to match COBE's screen orientation
-    const rx  =  z * Math.sin(phi) - x * Math.cos(phi);
-    const rz0 =  x * Math.sin(phi) + z * Math.cos(phi);
-    const ry0 = y;
-    // Rotate by theta (X-axis)
-    const ry2 = ry0 * Math.cos(theta) - rz0 * Math.sin(theta);
-    const rz2 = ry0 * Math.sin(theta) + rz0 * Math.cos(theta);
+    const x  = Math.cos(latR) * Math.sin(lonR);
+    const y  = Math.sin(latR);
+    const z  = Math.cos(latR) * Math.cos(lonR);
+    const rx  = z * Math.sin(phi) - x * Math.cos(phi);
+    const rz0 = x * Math.sin(phi) + z * Math.cos(phi);
+    const ry2 = y * Math.cos(theta) - rz0 * Math.sin(theta);
+    const rz2 = y * Math.sin(theta) + rz0 * Math.cos(theta);
     const r   = width / 2;
     return { sx: r + rx * r, sy: r - ry2 * r, visible: rz2 < 0 };
   }
@@ -1898,6 +1845,12 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
   const BASE_SPEED = 0.0018;
   let phi = 1.5;
   let globe = null;
+
+  const allMarkers = polaroidDefs.map(function(m) {
+    return { location: [m.lat, m.lon], size: m.size };
+  }).concat(dotOnlyMarkers.map(function(m) {
+    return { location: [m.lat, m.lon], size: m.size };
+  }));
 
   function init() {
     const width = canvas.offsetWidth;
@@ -1909,30 +1862,24 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
       phi, theta: BASE_THETA,
       dark: 0, diffuse: 1.5,
       mapSamples: 16000, mapBrightness: 10,
-      baseColor:   [0.93, 0.95, 0.96], // near-white matching #edf2f5
-      markerColor: [0.69, 0.54, 0.34], // #b08a56 tertiary gold
+      baseColor:   [0.93, 0.95, 0.96], // #edf2f5
+      markerColor: [0.69, 0.54, 0.34], // #b08a56 gold
       glowColor:   [0.42, 0.51, 0.58], // #6b8293 primary
       markerElevation: 0.01,
-      markers: markerDefs.map(function(m) {
-        return { location: [m.lat, m.lon], size: m.size, id: m.id };
-      }),
-      arcs: arcs.map(function(a, i) {
-        return { from: a.from, to: a.to, id: 'arc-' + i };
-      }),
+      markers: allMarkers,
+      arcs: arcs.map(function(a, i) { return { from: a.from, to: a.to, id: 'arc-' + i }; }),
       arcColor: [0.42, 0.51, 0.58],
-      arcWidth: 0.5, arcHeight: 0.25,
-      opacity: 0.7,
+      arcWidth: 0.5, arcHeight: 0.28,
+      opacity: 0.75,
       onRender: function(state) {
         if (!isPaused) {
           phi += BASE_SPEED;
-          // Velocity inertia
           if (Math.abs(velocity.phi) > 0.0001 || Math.abs(velocity.theta) > 0.0001) {
             phiOffset   += velocity.phi;
             thetaOffset += velocity.theta;
             velocity.phi   *= 0.95;
             velocity.theta *= 0.95;
           }
-          // Theta clamping
           if (thetaOffset < THETA_MIN) thetaOffset += (THETA_MIN - thetaOffset) * 0.1;
           else if (thetaOffset > THETA_MAX) thetaOffset += (THETA_MAX - thetaOffset) * 0.1;
         }
@@ -1941,16 +1888,16 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
         state.phi   = curPhi;
         state.theta = curTheta;
 
-        // Update JS-positioned marker labels
-        if (labelsEl) {
+        // Update polaroid positions
+        if (polaroidsEl) {
           const w = canvas.offsetWidth;
-          markerDefs.forEach(function(m) {
-            const el = labelEls[m.id];
+          polaroidDefs.forEach(function(m) {
+            const el = polaroidEls[m.id];
             if (!el) return;
             const p = project(m.lat, m.lon, curPhi, curTheta, w);
-            el.style.left    = p.sx + 'px';
-            el.style.top     = p.sy + 'px';
             el.style.opacity = p.visible ? '1' : '0';
+            el.style.filter  = p.visible ? 'none' : 'blur(4px)';
+            el.style.transform = 'translate(' + p.sx + 'px,' + p.sy + 'px) translate(-50%,calc(-100% - 14px)) rotate(' + m.rotate + 'deg)';
           });
         }
       },
