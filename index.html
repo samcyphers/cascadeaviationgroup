@@ -1341,12 +1341,16 @@
         <label for="qm-email">Your Email</label>
         <input id="qm-email" type="email" name="email" placeholder="your@email.com" required />
       </div>
-      <button type="submit" class="qm-submit">
+      <button type="submit" class="qm-submit" id="qm-submit-btn">
         Submit Quote Request
         <svg style="margin-left:0.5rem;vertical-align:middle;" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="2" y1="7" x2="12" y2="7"/><polyline points="7 2 12 7 7 12"/>
         </svg>
       </button>
+      <p id="qm-success" style="display:none;margin-top:1rem;padding:0.75rem 1rem;background:rgba(176,138,86,0.1);border:1px solid rgba(176,138,86,0.35);border-radius:6px;font-size:0.8rem;color:#8a6b3f;text-align:center;font-weight:500;">
+        ✓ Request received — our team will be in touch within 2 hours.
+      </p>
+      <p id="qm-error" style="display:none;margin-top:1rem;padding:0.75rem 1rem;background:rgba(200,60,60,0.08);border:1px solid rgba(200,60,60,0.25);border-radius:6px;font-size:0.8rem;color:#b03030;text-align:center;font-weight:500;"></p>
       <p class="qm-note">Our team will respond within 2 hours during business hours.</p>
     </form>
   </div>
@@ -1421,28 +1425,62 @@
     document.getElementById('mobile-nav').classList.remove('open');
   }
 
-  /* ── Shared email sender ── */
-  function sendQuoteEmail(from, to, date, passengers, email) {
-    var subject = encodeURIComponent('Charter Quote Request — Cascade Aviation Group');
-    var body = encodeURIComponent(
-      'NEW CHARTER QUOTE REQUEST\n' +
-      '══════════════════════════\n' +
-      'From:        ' + (from || '(not specified)') + '\n' +
-      'To:          ' + (to   || '(not specified)') + '\n' +
-      'Date:        ' + (date || '(not specified)') + '\n' +
-      'Passengers:  ' + (passengers || '(not specified)') + '\n' +
-      'Reply Email: ' + (email || '(not specified)') + '\n' +
-      '══════════════════════════\n' +
-      'Submitted via cascadeaviationgroup.com'
-    );
-    window.location.href = 'mailto:concierge@cascadeaviationgroup.com?subject=' + subject + '&body=' + body;
+  /* ── Web3Forms access key ──────────────────────────────────────────────
+     Sign up free at https://web3forms.com, enter concierge@cascadeaviationgroup.com,
+     verify the email, and replace the placeholder below with your access key.
+  ────────────────────────────────────────────────────────────────────── */
+  var WEB3FORMS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY';
+
+  /* ── Shared internal form sender ── */
+  function sendQuote(fields, onSuccess, onError) {
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key:  WEB3FORMS_KEY,
+        subject:     'New Charter Quote Request — Cascade Aviation Group',
+        from_name:   'Cascade Aviation Group Website',
+        replyto:     fields.email || '',
+        'Departure':      fields.from       || 'Not specified',
+        'Destination':    fields.to         || 'Not specified',
+        'Travel Date':    fields.date       || 'Not specified',
+        'Passengers':     fields.passengers || 'Not specified',
+        'Reply-To Email': fields.email      || 'Not specified',
+      })
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (data.success) { onSuccess(); }
+      else { onError(data.message || 'Submission failed. Please call us at 360-797-9041.'); }
+    })
+    .catch(function() {
+      onError('Network error. Please try again or call us at 360-797-9041.');
+    });
   }
 
   /* ── Inline quote bar form ── */
   function submitQuote(e) {
     e.preventDefault();
-    var f = e.target;
-    sendQuoteEmail(f.from.value, f.to.value, f.date.value, f.passengers.value, f.email.value);
+    var f   = e.target;
+    var btn = f.querySelector('button[type="submit"]');
+    var orig = btn.innerHTML;
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    sendQuote(
+      { from: f.from.value, to: f.to.value, date: f.date.value,
+        passengers: f.passengers.value, email: f.email.value },
+      function() {
+        f.reset();
+        btn.textContent = '✓ Request Sent!';
+        setTimeout(function() { btn.disabled = false; btn.innerHTML = orig; }, 4000);
+      },
+      function() {
+        btn.disabled = false;
+        btn.innerHTML = orig;
+        alert('There was a problem sending your request. Please call us at 360-797-9041.');
+      }
+    );
   }
 
   /* ── Quote Modal ── */
@@ -1456,9 +1494,36 @@
   }
   function submitModalQuote(e) {
     e.preventDefault();
-    var f = e.target;
-    sendQuoteEmail(f.from.value, f.to.value, f.date.value, f.passengers.value, f.email.value);
-    closeQuoteModal();
+    var f       = e.target;
+    var btn     = document.getElementById('qm-submit-btn');
+    var success = document.getElementById('qm-success');
+    var error   = document.getElementById('qm-error');
+    var orig    = btn.innerHTML;
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    error.style.display = 'none';
+
+    sendQuote(
+      { from: f.from.value, to: f.to.value, date: f.date.value,
+        passengers: f.passengers.value, email: f.email.value },
+      function() {
+        f.reset();
+        btn.innerHTML = orig;
+        btn.disabled  = false;
+        success.style.display = 'block';
+        setTimeout(function() {
+          success.style.display = 'none';
+          closeQuoteModal();
+        }, 3500);
+      },
+      function(msg) {
+        btn.disabled  = false;
+        btn.innerHTML = orig;
+        error.textContent    = msg;
+        error.style.display  = 'block';
+      }
+    );
   }
   // Close on backdrop click
   document.getElementById('quote-modal').addEventListener('click', function(e) {
