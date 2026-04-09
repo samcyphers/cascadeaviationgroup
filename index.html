@@ -1433,20 +1433,20 @@
 
   /* ── Shared internal form sender ── */
   function sendQuote(fields, onSuccess, onError) {
+    var data = new FormData();
+    data.append('access_key',    WEB3FORMS_KEY);
+    data.append('subject',       'New Charter Quote Request — Cascade Aviation Group');
+    data.append('from_name',     'Cascade Aviation Group Website');
+    data.append('replyto',       fields.email      || '');
+    data.append('Departure',     fields.from       || 'Not specified');
+    data.append('Destination',   fields.to         || 'Not specified');
+    data.append('Travel Date',   fields.date       || 'Not specified');
+    data.append('Passengers',    fields.passengers || 'Not specified');
+    data.append('Reply-To Email',fields.email      || 'Not specified');
+
     fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        access_key:  WEB3FORMS_KEY,
-        subject:     'New Charter Quote Request — Cascade Aviation Group',
-        from_name:   'Cascade Aviation Group Website',
-        replyto:     fields.email || '',
-        'Departure':      fields.from       || 'Not specified',
-        'Destination':    fields.to         || 'Not specified',
-        'Travel Date':    fields.date       || 'Not specified',
-        'Passengers':     fields.passengers || 'Not specified',
-        'Reply-To Email': fields.email      || 'Not specified',
-      })
+      body: data
     })
     .then(function(res) { return res.json(); })
     .then(function(data) {
