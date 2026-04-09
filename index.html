@@ -484,11 +484,11 @@
     .section-header { margin-bottom: 3.5rem; }
     .fleet-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     .fleet-card {
-      position: relative; border-radius: var(--r);
+      position: relative; border-radius: 14px;
       overflow: hidden; cursor: pointer;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
-    .fleet-card img { width: 100%; height: 240px; object-fit: cover; display: block; transition: transform 0.5s; }
+    .fleet-card img { width: 100%; height: 240px; object-fit: cover; display: block; transition: transform 0.5s; border-radius: 14px; }
     .fleet-card:hover img { transform: scale(1.04); }
     .fleet-card-overlay {
       position: absolute; inset: 0;
@@ -1173,10 +1173,10 @@
 
       <!-- Light Jet -->
       <div class="fleet-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Embraer_505_Phenom_300%2C_Aerojet_JP7625910.jpg/800px-Embraer_505_Phenom_300%2C_Aerojet_JP7625910.jpg" alt="Embraer Phenom 300E — Light Jet" />
+        <img src="assets/phenom300.jpg" alt="Embraer Phenom 300 — Light Jet" />
         <div class="fleet-card-overlay">
-          <div class="fleet-card-eyebrow">Up to 7 Passengers</div>
-          <div class="fleet-card-title">Light Jet</div>
+          <div class="fleet-card-eyebrow">Light Jet &nbsp;·&nbsp; Up to 7 Passengers</div>
+          <div class="fleet-card-title">Embraer Phenom 300</div>
           <div class="fleet-card-range">Range: Up to 1,500 nm — Regional Routes</div>
         </div>
         <div class="fleet-card-arrow">
@@ -1188,10 +1188,10 @@
 
       <!-- Midsize Jet -->
       <div class="fleet-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Cessna_560XL_Citation_XLS.jpg/800px-Cessna_560XL_Citation_XLS.jpg" alt="Cessna Citation XLS — Midsize Jet" />
+        <img src="assets/citation-xls.jpg" alt="Cessna Citation XLS — Midsize Jet" />
         <div class="fleet-card-overlay">
-          <div class="fleet-card-eyebrow">Up to 9 Passengers</div>
-          <div class="fleet-card-title">Midsize Jet</div>
+          <div class="fleet-card-eyebrow">Midsize Jet &nbsp;·&nbsp; Up to 9 Passengers</div>
+          <div class="fleet-card-title">Cessna Citation XLS</div>
           <div class="fleet-card-range">Range: Up to 2,500 nm — Cross-Country</div>
         </div>
         <div class="fleet-card-arrow">
@@ -1203,10 +1203,10 @@
 
       <!-- Super-Midsize -->
       <div class="fleet-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bombardier_BD-100-1A10_Challenger_300_AN1704544.jpg/800px-Bombardier_BD-100-1A10_Challenger_300_AN1704544.jpg" alt="Bombardier Challenger 350 — Super-Midsize Jet" />
+        <img src="assets/challenger-350.jpg" alt="Bombardier Challenger 350 — Super-Midsize Jet" />
         <div class="fleet-card-overlay">
-          <div class="fleet-card-eyebrow">Up to 10 Passengers</div>
-          <div class="fleet-card-title">Super-Midsize</div>
+          <div class="fleet-card-eyebrow">Super-Midsize &nbsp;·&nbsp; Up to 10 Passengers</div>
+          <div class="fleet-card-title">Bombardier Challenger 350</div>
           <div class="fleet-card-range">Range: Up to 3,500 nm — Coast to Coast</div>
         </div>
         <div class="fleet-card-arrow">
@@ -1218,10 +1218,10 @@
 
       <!-- Large Cabin -->
       <div class="fleet-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Gulfstream_G600.jpg" alt="Gulfstream G600 — Large Cabin Jet" />
+        <img src="assets/falcon-10x.jpg" alt="Dassault Falcon 10X — Large Cabin Jet" />
         <div class="fleet-card-overlay">
-          <div class="fleet-card-eyebrow">Up to 14 Passengers</div>
-          <div class="fleet-card-title">Large Cabin</div>
+          <div class="fleet-card-eyebrow">Large Cabin &nbsp;·&nbsp; Up to 14 Passengers</div>
+          <div class="fleet-card-title">Dassault Falcon 10X</div>
           <div class="fleet-card-range">Range: Up to 4,000 nm — Intercontinental</div>
         </div>
         <div class="fleet-card-arrow">
@@ -1233,10 +1233,10 @@
 
       <!-- Ultra-Long Range -->
       <div class="fleet-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/G-ULFS_Gulfstream_G650_CVT_05-05-16_%2827046023031%29_%28cropped%29.jpg/800px-G-ULFS_Gulfstream_G650_CVT_05-05-16_%2827046023031%29_%28cropped%29.jpg" alt="Gulfstream G650ER — Ultra-Long Range Jet" />
+        <img src="assets/gulfstream-g650.jpg" alt="Gulfstream G650 — Ultra-Long Range Jet" />
         <div class="fleet-card-overlay">
-          <div class="fleet-card-eyebrow">Up to 16 Passengers</div>
-          <div class="fleet-card-title">Ultra-Long Range</div>
+          <div class="fleet-card-eyebrow">Ultra-Long Range &nbsp;·&nbsp; Up to 16 Passengers</div>
+          <div class="fleet-card-title">Gulfstream G650</div>
           <div class="fleet-card-range">Range: 7,000+ nm — Non-Stop Global</div>
         </div>
         <div class="fleet-card-arrow">
@@ -1248,10 +1248,10 @@
 
       <!-- Helicopter -->
       <div class="fleet-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Pesca_1_%283737941060%29.jpg/800px-Pesca_1_%283737941060%29.jpg" alt="Sikorsky S-76 — Helicopter" />
+        <img src="assets/sikorsky-s76.jpg" alt="Sikorsky S-76 — Helicopter" />
         <div class="fleet-card-overlay">
-          <div class="fleet-card-eyebrow">2–8 Passengers</div>
-          <div class="fleet-card-title">Helicopter</div>
+          <div class="fleet-card-eyebrow">Helicopter &nbsp;·&nbsp; 2–8 Passengers</div>
+          <div class="fleet-card-title">Sikorsky S-76</div>
           <div class="fleet-card-range">Last-mile luxury — City to Resort</div>
         </div>
         <div class="fleet-card-arrow">
