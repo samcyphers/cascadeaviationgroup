@@ -1333,9 +1333,15 @@
       </div>
       <div class="qm-row">
         <div class="qm-field">
-          <label for="qm-date">Date</label>
-          <input id="qm-date" type="date" name="date" />
+          <label for="qm-departure-date">Departure Date</label>
+          <input id="qm-departure-date" type="date" name="departure-date" />
         </div>
+        <div class="qm-field">
+          <label for="qm-return-date">Return Date</label>
+          <input id="qm-return-date" type="date" name="return-date" />
+        </div>
+      </div>
+      <div class="qm-row">
         <div class="qm-field">
           <label for="qm-pax">Passengers</label>
           <select id="qm-pax" name="passengers">
@@ -1345,10 +1351,10 @@
             <option>9</option><option>10</option><option>11+</option>
           </select>
         </div>
-      </div>
-      <div class="qm-field">
-        <label for="qm-email">Your Email</label>
-        <input id="qm-email" type="email" name="email" placeholder="your@email.com" required />
+        <div class="qm-field">
+          <label for="qm-email">Your Email</label>
+          <input id="qm-email" type="email" name="email" placeholder="your@email.com" required />
+        </div>
       </div>
       <button type="submit" class="qm-submit" id="qm-submit-btn">
         Submit Quote Request
@@ -1449,7 +1455,8 @@
     data.append('replyto',       fields.email      || '');
     data.append('Departure',     fields.from       || 'Not specified');
     data.append('Destination',   fields.to         || 'Not specified');
-    data.append('Travel Date',   fields.date       || 'Not specified');
+    data.append('Departure Date', fields.departureDate || 'Not specified');
+    data.append('Return Date',    fields.returnDate    || 'Not specified');
     data.append('Passengers',    fields.passengers || 'Not specified');
     data.append('Reply-To Email',fields.email      || 'Not specified');
 
@@ -1514,7 +1521,9 @@
     error.style.display = 'none';
 
     sendQuote(
-      { from: f.from.value, to: f.to.value, date: f.date.value,
+      { from: f.from.value, to: f.to.value,
+        departureDate: f['departure-date'].value,
+        returnDate:    f['return-date'].value,
         passengers: f.passengers.value, email: f.email.value },
       function() {
         f.reset();
