@@ -686,6 +686,18 @@
     .footer-contact p { font-size: 0.78rem; font-weight: 300; color: rgba(10,15,30,0.65); line-height: 1.7; }
     .footer-contact a { color: rgba(10,15,30,0.65); text-decoration: none; transition: color 0.2s; }
     .footer-contact a:hover { color: #6b8293; }
+    .footer-orgs {
+      max-width: 1320px; margin: 0 auto 2rem;
+      padding-top: 2rem; border-top: 1px solid rgba(43,47,52,0.12);
+      display: flex; align-items: center; justify-content: center;
+      gap: 3rem; flex-wrap: wrap;
+    }
+    .footer-orgs img {
+      height: 48px; width: auto;
+      filter: grayscale(100%) opacity(0.55);
+      transition: filter 0.25s;
+    }
+    .footer-orgs img:hover { filter: grayscale(0%) opacity(1); }
     .footer-bottom {
       max-width: 1320px; margin: 0 auto;
       padding-top: 1.5rem; border-top: 1px solid rgba(43,47,52,0.12);
@@ -925,6 +937,8 @@
       /* Footer */
       footer { padding: 3rem 1.25rem 1.5rem; }
       .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-orgs { gap: 2rem; }
+      .footer-orgs img { height: 36px; }
       .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
 
       /* Modal */
@@ -1504,6 +1518,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </p>
     </div>
 
+  </div>
+
+  <div class="footer-orgs">
+    <img src="assets/organizations/nbaa-main-logo.png" alt="NBAA Member">
+    <img src="assets/organizations/PNBAALogo.png" alt="PNBAA Member">
+    <img src="assets/organizations/GLADA-_logo_secd_oc.png" alt="GLADA Member">
   </div>
 
   <div class="footer-bottom">
