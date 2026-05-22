@@ -698,6 +698,8 @@
       transition: filter 0.25s;
     }
     .footer-orgs img:hover { filter: grayscale(0%) opacity(1); }
+    .footer-orgs img.logo-invert { filter: invert(1) grayscale(100%) opacity(0.55); }
+    .footer-orgs img.logo-invert:hover { filter: invert(1) grayscale(0%) opacity(1); }
     .footer-bottom {
       max-width: 1320px; margin: 0 auto;
       padding-top: 1.5rem; border-top: 1px solid rgba(43,47,52,0.12);
@@ -1523,7 +1525,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="footer-orgs">
     <img src="assets/organizations/nbaa-main-logo.png" alt="NBAA Member">
     <img src="assets/organizations/PNBAALogo.png" alt="PNBAA Member">
-    <img src="assets/organizations/GLADA-_logo_secd_oc.png" alt="GLADA Member">
+    <img src="assets/organizations/GLADA-_logo_secd_oc.png" alt="GLADA Member" class="logo-invert">
   </div>
 
   <div class="footer-bottom">
