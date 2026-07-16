@@ -1610,7 +1610,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     btn.textContent = 'Sending…';
 
     sendQuote(
-      { from: f.from.value, to: f.to.value, date: f.date.value,
+      { from: f.from.value, to: f.to.value, departureDate: f.date.value,
         passengers: f.passengers.value, email: f.email.value },
       function() {
         f.reset();
