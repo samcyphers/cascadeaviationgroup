@@ -235,10 +235,10 @@
     ═══════════════════════════════════════ */
     .intro-section {
       background: var(--cream);
-      padding: 7rem 5rem;
+      padding: 3.5rem 5rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 6rem;
+      gap: 3.5rem;
       align-items: center;
     }
 
@@ -258,14 +258,14 @@
     .intro-body {
       font-size: 0.82rem;
       font-weight: 500;
-      line-height: 1.9;
+      line-height: 1.7;
       color: #4a5568;
-      margin-bottom: 1.2rem;
+      margin-bottom: 0.85rem;
     }
 
     .intro-signature {
-      margin-top: 2.5rem;
-      padding-top: 1.5rem;
+      margin-top: 1.25rem;
+      padding-top: 1rem;
       border-top: 1px solid var(--border);
     }
 
@@ -293,7 +293,7 @@
       position: relative;
       border-radius: 2px;
       overflow: hidden;
-      aspect-ratio: 3/4;
+      aspect-ratio: 5/4;
     }
 
     .intro-image-frame img {
@@ -455,15 +455,15 @@
 
     .why-header {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
+      grid-template-columns: 3fr 2fr;
+      gap: 3rem;
       align-items: end;
       margin-bottom: 4rem;
     }
 
     .why-headline {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(2rem, 3.5vw, 3.8rem);
+      font-size: clamp(1.8rem, 3.2vw, 3.6rem);
       font-weight: 500;
       line-height: 1.15;
       color: var(--navy);
@@ -1033,12 +1033,7 @@
     }
 
     .cta-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('./Citation XLS.jpeg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.08;
+      display: none;
     }
 
     .cta-inner {
@@ -1057,12 +1052,12 @@
       margin: 1rem 0 1.5rem;
     }
 
-    .cta-headline em { font-style: italic; color: var(--gold-light); }
+    .cta-headline em { font-style: italic; font-weight: 700; color: var(--gold-light); }
 
     .cta-body {
       font-size: 0.8rem;
       font-weight: 500;
-      color: rgba(255,255,255,0.6);
+      color: var(--white);
       line-height: 1.9;
       margin-bottom: 3rem;
     }
@@ -1087,7 +1082,7 @@
     .cta-step-num {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 2.5rem;
-      font-weight: 500;
+      font-weight: 700;
       color: rgba(176,138,86,0.3);
       line-height: 1;
       margin-bottom: 0.75rem;
@@ -1105,7 +1100,7 @@
     .cta-step-body {
       font-size: 0.72rem;
       font-weight: 500;
-      color: rgba(255,255,255,0.55);
+      color: var(--white);
       line-height: 1.7;
     }
 
@@ -1133,7 +1128,7 @@
       font-weight: 700;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+      color: var(--white);
       margin-bottom: 0.5rem;
     }
 
@@ -1269,11 +1264,11 @@
       margin-bottom: 0;
     }
     .cta-inner .fee-inclusions-title {
-      color: rgba(255,255,255,0.6);
+      color: var(--white);
       margin-bottom: 0.5rem;
     }
     .cta-inner .fee-inc-grid { grid-template-columns: repeat(3, 1fr); gap: 0.4rem; }
-    .cta-inner .fee-inc-text { color: rgba(255,255,255,0.55); }
+    .cta-inner .fee-inc-text { color: var(--white); }
     .cta-inner .fee-inc-check {
       background: rgba(176,138,86,0.12);
       border-color: rgba(176,138,86,0.35);
@@ -1284,8 +1279,8 @@
       padding: 0.5rem 1rem;
       margin-bottom: 0;
     }
-    .cta-inner .fee-notes-title { color: var(--gold); margin-bottom: 0.3rem; }
-    .cta-inner .fee-notes-body { color: rgba(255,255,255,0.5); line-height: 1.5; }
+    .cta-inner .fee-notes-title { color: var(--gold); font-weight: 800; margin-bottom: 0.3rem; }
+    .cta-inner .fee-notes-body { color: var(--white); line-height: 1.5; }
     /* Footer pulled into CTA page */
     .cta-footer-bar {
       background: #0a0f1e;
@@ -1296,10 +1291,10 @@
       align-items: center;
     }
     .cta-footer-bar .footer-logo-top { font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); }
-    .cta-footer-bar .footer-logo-name { font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-top: 0.2rem; }
-    .cta-footer-bar .footer-legal { color: rgba(255,255,255,0.2); text-align: center; line-height: 1.7; }
-    .cta-footer-bar .footer-right { color: rgba(255,255,255,0.3); text-align: right; letter-spacing: 0.1em; }
-    .cta-footer-bar .footer-right a { color: var(--gold); text-decoration: none; }
+    .cta-footer-bar .footer-logo-name { font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); margin-top: 0.2rem; }
+    .cta-footer-bar .footer-legal { color: var(--white); text-align: center; line-height: 1.7; }
+    .cta-footer-bar .footer-right { color: var(--white); text-align: right; letter-spacing: 0.1em; }
+    .cta-footer-bar .footer-right a { color: var(--gold); font-weight: 700; text-decoration: none; }
     .fee-header {
       text-align: left;
       margin-bottom: 0;
@@ -1497,7 +1492,7 @@
           <div class="section-label">The Case for Private</div>
           <div class="gold-rule left"></div>
           <h2 class="why-headline">
-            Why discerning travelers<br>choose <em>private aviation.</em>
+            Why discerning travelers choose<br><em>private aviation.</em>
           </h2>
         </div>
         <p class="why-intro">
