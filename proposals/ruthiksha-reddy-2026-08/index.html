@@ -157,6 +157,23 @@
       padding: 4rem 0 2rem;
     }
 
+    .cover-hero-row {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 4rem;
+    }
+
+    .cover-hero-text { flex: 1; }
+
+    .cover-quote-block {
+      flex: 0 0 auto;
+      max-width: 380px;
+      text-align: right;
+      padding-left: 2rem;
+      border-left: 1px solid rgba(176, 138, 86, 0.25);
+    }
+
     .cover-eyebrow {
       font-size: 0.6rem;
       font-weight: 600;
@@ -1307,6 +1324,101 @@
     .fee-notes { padding: 0.9rem 1.2rem; }
     .fee-notes-body { line-height: 1.6; }
 
+    /* ═══════════════════════════════════════
+       RESPONSIVE — TABLET & MOBILE
+       Screen only. PDF export (generate_pdf.py)
+       renders at a fixed 1056×816px viewport
+       (11in × 8.5in @ 96dpi), well above these
+       breakpoints, so the print layout is
+       untouched by any of this.
+    ═══════════════════════════════════════ */
+    @media screen and (max-width: 1024px) {
+      .cover-content,
+      .intro-section,
+      .why-section,
+      .fee-section,
+      .cta-section {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+      }
+      .why-section { padding-top: 4rem; padding-bottom: 4rem; }
+
+      .cover-hero-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+      }
+      .cover-quote-block {
+        border-left: none;
+        padding-left: 0;
+        max-width: 100%;
+        text-align: left;
+      }
+
+      .intro-section { grid-template-columns: 1fr; gap: 2.5rem; }
+      .intro-image-col { order: -1; }
+
+      .why-header { grid-template-columns: 1fr; gap: 1.5rem; }
+      .why-list { grid-template-columns: 1fr; }
+
+      .fee-section { padding-top: 3rem; padding-bottom: 3rem; min-height: auto; }
+      .fee-layout { grid-template-columns: 1fr; min-height: auto; gap: 2rem; }
+      .fee-content { padding-right: 0; }
+      .fee-image-col { flex-direction: row; }
+      .fee-image-col img { aspect-ratio: 4/3; flex: 1 1 50%; }
+      .fee-trip-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .cta-section { padding: 3rem 2.5rem 0; min-height: auto; }
+      .cta-steps { flex-direction: column; }
+      .cta-step { border-right: 1px solid rgba(176,138,86,0.2); border-bottom: none; }
+      .cta-inner .fee-inc-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .cta-contact-block { flex-direction: column; }
+      .cta-contact-item { border-right: none; border-bottom: 1px solid rgba(176,138,86,0.2); width: 100%; }
+      .cta-contact-item:last-child { border-bottom: none; }
+      .cta-contact-value { white-space: normal; }
+
+      .cta-footer-bar {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        margin-left: -2.5rem;
+        margin-right: -2.5rem;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+      }
+      .cta-footer-bar .footer-right,
+      .cta-footer-bar .footer-legal { text-align: center; }
+    }
+
+    @media screen and (max-width: 640px) {
+      .cover-content,
+      .intro-section,
+      .why-section,
+      .fee-section,
+      .cta-section {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+
+      .cover-headline { font-size: clamp(2.1rem, 9vw, 3rem); }
+      .cover-top { flex-wrap: wrap; gap: 0.75rem; }
+
+      .fee-trip-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .fee-image-col { flex-direction: column; }
+      .fee-image-col img { aspect-ratio: 16/9; }
+      .fee-proposed { padding: 1.5rem 1.25rem; }
+
+      .cta-inner .fee-inc-grid { grid-template-columns: 1fr; }
+
+      .cta-footer-bar {
+        margin-left: -1.25rem;
+        margin-right: -1.25rem;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1330,8 +1442,8 @@
         </div>
       </div>
 
-      <div class="cover-center" style="display:flex; flex-direction:row; justify-content:space-between; align-items:flex-end; gap:4rem;">
-        <div style="flex:1;">
+      <div class="cover-center cover-hero-row">
+        <div class="cover-hero-text">
           <div class="cover-eyebrow">Private Charter Proposal</div>
           <h1 class="cover-headline">
             Travel on <em>your</em> terms.<br>Arrive differently.
@@ -1341,7 +1453,7 @@
             where every detail is managed, every preference anticipated, and every journey is extraordinary.
           </p>
         </div>
-        <div style="flex:0 0 auto; max-width:380px; text-align:right; padding-left:2rem; border-left:1px solid rgba(176,138,86,0.25);">
+        <div class="cover-quote-block">
           <p style="font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(1rem,1.5vw,1.35rem); font-weight:500; font-style:italic; color:rgba(255,255,255,0.82); line-height:1.6; margin-bottom:0.75rem;">
             "We do not simply move people from one place to another. We return to them the only thing money cannot buy — time — and give them the freedom to use it beautifully."
           </p>
