@@ -1306,13 +1306,25 @@
       overflow: hidden;
       border-radius: 2px;
     }
-    .fee-image-col img {
-      width: 100%;
+    .fee-image-frame {
+      position: relative;
       flex: 1;
       min-height: 0;
+      overflow: hidden;
+    }
+    .fee-image-frame img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       object-position: center;
       display: block;
+    }
+    .fee-image-frame::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(43,47,52,0.5) 0%, rgba(176,138,86,0.22) 55%, rgba(10,15,30,0.6) 100%);
+      pointer-events: none;
     }
     .fee-header { margin-bottom: 0; }
     .fee-header .gold-rule { margin-top: 0.6rem; margin-bottom: 0; }
@@ -1438,7 +1450,7 @@
       .fee-layout { grid-template-columns: 1fr; min-height: auto; gap: 2rem; }
       .fee-content { padding-right: 0; }
       .fee-image-col { flex-direction: row; }
-      .fee-image-col img { aspect-ratio: 4/3; flex: 1 1 50%; }
+      .fee-image-frame { aspect-ratio: 4/3; flex: 1 1 50%; }
       .fee-trip-grid { grid-template-columns: repeat(2, 1fr); }
 
       .cta-section { padding: 3rem 2.5rem 0; min-height: auto; }
@@ -1479,7 +1491,7 @@
 
       .fee-trip-grid { grid-template-columns: 1fr; gap: 1rem; }
       .fee-image-col { flex-direction: column; }
-      .fee-image-col img { aspect-ratio: 16/9; }
+      .fee-image-frame { aspect-ratio: 16/9; }
       .fee-proposed { padding: 1.5rem 1.25rem; }
 
       .cta-inner .fee-inc-grid { grid-template-columns: 1fr; }
@@ -1580,7 +1592,7 @@
 
     <div class="intro-image-col">
       <div class="intro-image-frame">
-        <img src="./Airbus H130 Exterior.jpg" alt="Airbus H130 helicopter in flight" />
+        <img src="./Airbus H130 Static.jpg" alt="Airbus H130 helicopter on the helipad" />
         <div class="intro-image-overlay"></div>
       </div>
       <div class="intro-image-accent"></div>
@@ -1838,8 +1850,8 @@
 
       </div><!-- end fee-content -->
       <div class="fee-image-col">
-        <img src="./Airbus H130 Exterior.jpg" alt="Airbus H130 helicopter in flight" />
-        <img src="./Airbus H130 Cabin.jpeg" alt="Airbus H130 cabin interior" />
+        <div class="fee-image-frame"><img src="./Airbus H130 Exterior.jpg" alt="Airbus H130 helicopter in flight" /></div>
+        <div class="fee-image-frame"><img src="./Airbus H130 Cabin.jpeg" alt="Airbus H130 cabin interior" /></div>
       </div>
     </div><!-- end fee-layout -->
   </section>
