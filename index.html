@@ -175,8 +175,9 @@
     }
     .nav-logo {
       display: flex; flex-direction: column; line-height: 1;
-      text-decoration: none;
+      text-decoration: none; -webkit-tap-highlight-color: transparent;
     }
+    .nav-logo:focus:not(:focus-visible) { outline: none; }
     .nav-logo-top {
       font-size: 0.62rem; font-weight: 700; letter-spacing: 0.22em;
       text-transform: uppercase; color: var(--gold);
